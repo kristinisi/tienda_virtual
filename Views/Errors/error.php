@@ -1,3 +1,4 @@
+<!-- Página de error -->
 <!DOCTYPE html>
 <html lang="en">
 

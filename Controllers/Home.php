@@ -15,6 +15,7 @@ class Home extends Controllers
         $data['page_title'] = "Página principal";
         $data['page_name'] = "home";
         $data['page_content'] = "Este es un texo de ejemplo";
+        //hacemos el llamado a la vista que queremos mostrar mandandole como parámetro el array 
         $this->views->getView($this, "home", $data);
     }
 }

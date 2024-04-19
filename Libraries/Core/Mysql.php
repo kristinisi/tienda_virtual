@@ -1,5 +1,7 @@
 <?php
 
+//Hace el CRUD a la base de datos
+
 class Mysql extends Conexion
 {
     private $conexion;

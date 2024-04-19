@@ -5,6 +5,30 @@ function base_url()
     return BASE_URL;
 }
 
+//Retorna la URL Assets
+function media()
+{
+    return BASE_URL . "/Assets";
+}
+
+//Retorna la URL del header del admin
+function headerAdmin($data = "")
+{
+    echo "estoy aqui";
+    $view_header = "./Views/Template/header_admin.php";
+    echo $view_header;
+    require_once($view_header);
+    echo "ahora estoy aqui";
+}
+
+//Retorna la URL del footer del admin
+function footerAdmin($data = "")
+{
+
+    $view_footer = "./Views/Template/footer_admin.php";
+    require_once($view_footer);
+}
+
 //Muestra información formateada (para ver mejor los arrays)
 function dep($data)
 {

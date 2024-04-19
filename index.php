@@ -1,5 +1,7 @@
 <?php
 
+//Primer archivo que se ejecuta cuando cargamos el proyecto
+
 require_once("Config/Config.php");
 require_once("Helpers/Helpers.php");
 

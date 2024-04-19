@@ -1,4 +1,6 @@
 <?php
+//Hace el llamado hacia las vistas
+
 class Views
 {
 

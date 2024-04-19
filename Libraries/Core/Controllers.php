@@ -1,4 +1,5 @@
 <?php
+//Este archivo hace la carga de los controladores y llamado hacia los modelos
 
 class Controllers
 {

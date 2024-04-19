@@ -1,3 +1,4 @@
+<!-- Página ppal -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,7 +9,7 @@
 </head>
 
 <body>
-    
+    <h1>Esta es la vista home</h1>
 </body>
 
 </html>

@@ -1,5 +1,5 @@
 <?php
-$controllerFile = "Controllers/" . $controller . ".php";
+$controllerFile = "Controllers/" . $controller . ".php"; //Para poder convertir la primera letra en matúscula para el case sensitive de los servidores
 if (file_exists($controllerFile)) {
     //en caso de que exista el controlador, lo requerimos
     require_once($controllerFile);
