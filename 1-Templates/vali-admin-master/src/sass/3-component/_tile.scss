@@ -11,7 +11,6 @@
 
 	@media print {
 		border: 1px solid #ddd;
-		box-shadow: none;
 	}
 
 	&.small { padding: 0; }
@@ -33,7 +32,6 @@
 		.l-text {
 			font-size: 24px;
 			margin-top: 15px;
-			margin-left: 12px;
 		}
 	}
 

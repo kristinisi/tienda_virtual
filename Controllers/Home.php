@@ -10,7 +10,7 @@ class Home extends Controllers
     public function home($parems)
     {
         //invocamos la vista para la página principal
-        $data['page_id'] = "1";
+        $data['page_id'] = 1;
         $data['page_tag'] = "Home";
         $data['page_title'] = "Página principal";
         $data['page_name'] = "home";

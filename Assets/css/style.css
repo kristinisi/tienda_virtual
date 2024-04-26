@@ -8,3 +8,40 @@ body {
 .app-header__logo {
   font-family: "Bad Script", cursive;
 }
+
+.app-sidebar__user-avatar {
+  width: 20%;
+}
+
+.app-sidebar__toggle {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15pt;
+}
+
+.app-sidebar__toggle::before {
+  display: none;
+}
+
+.dataTables_length {
+  display: inline-block;
+}
+
+.headerRegister,
+.headerUpdate {
+  background-color: #f3b3b2ff;
+  color: #fff;
+}
+.header-primary {
+  background-color: #859f58ff;
+  color: #fff;
+}
+
+.notBlcok {
+  display: none;
+}

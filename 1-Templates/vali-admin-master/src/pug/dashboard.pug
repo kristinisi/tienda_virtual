@@ -8,20 +8,20 @@ block content
 	.app-title
 		div
 			h1
-				i.bi.bi-speedometer
+				i.fa.fa-dashboard
 				|  Dashboard
-			p A free and open source Bootstrap 5 admin template
+			p A free and open source Bootstrap 4 admin template
 
 		ul.app-breadcrumb.breadcrumb
 			li.breadcrumb-item
-				i.bi.bi-house-door.fs-6
+				i.fa.fa-home.fa-lg
 			li.breadcrumb-item
 				a(href='#') Dashboard
 
 	.row
 		.col-md-6.col-lg-3
 			.widget-small.primary.coloured-icon
-				i.icon.bi.bi-people.fs-1
+				i.icon.fa.fa-users.fa-3x
 				div.info
 					h4 Users
 					p
@@ -29,7 +29,7 @@ block content
 
 		.col-md-6.col-lg-3
 			.widget-small.info.coloured-icon
-				i.icon.bi.bi-heart.fs-1
+				i.icon.fa.fa-thumbs-o-up.fa-3x
 				div.info
 					h4 Likes
 					p
@@ -37,7 +37,7 @@ block content
 
 		.col-md-6.col-lg-3
 			.widget-small.warning.coloured-icon
-				i.icon.bi.bi-folder2.fs-1
+				i.icon.fa.fa-files-o.fa-3x
 				div.info
 					h4 Uploades
 					p
@@ -45,7 +45,7 @@ block content
 
 		.col-md-6.col-lg-3
 			.widget-small.danger.coloured-icon
-				i.icon.bi.bi-star.fs-1
+				i.icon.fa.fa-star.fa-3x
 				div.info
 					h4 Stars
 					p
@@ -53,80 +53,61 @@ block content
 	.row
 		.col-md-6
 			.tile
-				h3.tile-title Weekly Sales - Last week
-				.ratio.ratio-16x9
-					div(id="salesChart")
+				h3.tile-title Monthly Sales
+				.embed-responsive.embed-responsive-16by9
+					canvas.embed-responsive-item(id="lineChartDemo")
 
 		.col-md-6
 			.tile
 				h3.tile-title Support Requests
-				.ratio.ratio-16x9
-					div(id="supportRequestChart")
-
+				.embed-responsive.embed-responsive-16by9
+					canvas.embed-responsive-item(id="pieChartDemo")
 
 block specific-js
-	script(type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js")
-	script(type="text/javascript").
-		const salesData = {
-			xAxis: {
-				type: 'category',
-				data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-			},
-			yAxis: {
-				type: 'value',
-				axisLabel: {
-					formatter: '${value}'
-				}
-			},
-			series: [
+	script(type='text/javascript', src="js/plugins/chart.js")
+	script(type='text/javascript').
+		var data = {
+			labels: ["January", "February", "March", "April", "May"],
+			datasets: [
 				{
-					data: [150, 230, 224, 218, 135, 147, 260],
-					type: 'line',
-					smooth: true
-				}
-			],
-			tooltip: {
-				trigger: 'axis',
-				formatter: "<b>{b0}:</b> ${c0}"
-			}
-		}
-
-		const supportRequests = {
-			tooltip: {
-				trigger: 'item'
-			},
-			legend: {
-				orient: 'vertical',
-				left: 'left'
-			},
-			series: [
+					label: "My First dataset",
+					fillColor: "rgba(220,220,220,0.2)",
+					strokeColor: "rgba(220,220,220,1)",
+					pointColor: "rgba(220,220,220,1)",
+					pointStrokeColor: "#fff",
+					pointHighlightFill: "#fff",
+					pointHighlightStroke: "rgba(220,220,220,1)",
+					data: [65, 59, 80, 81, 56]
+				},
 				{
-					name: 'Support Requests',
-					type: 'pie',
-					radius: '50%',
-					data: [
-						{ value: 300, name: 'In Progress' },
-						{ value: 50, name: 'Delayed' },
-						{ value: 100, name: 'Complete' }
-					],
-					emphasis: {
-						itemStyle: {
-							shadowBlur: 10,
-							shadowOffsetX: 0,
-							shadowColor: 'rgba(0, 0, 0, 0.5)'
-						}
-					}
+					label: "My Second dataset",
+					fillColor: "rgba(151,187,205,0.2)",
+					strokeColor: "rgba(151,187,205,1)",
+					pointColor: "rgba(151,187,205,1)",
+					pointStrokeColor: "#fff",
+					pointHighlightFill: "#fff",
+					pointHighlightStroke: "rgba(151,187,205,1)",
+					data: [28, 48, 40, 19, 86]
 				}
 			]
 		};
+		var pdata = [
+			{
+				value: 300,
+				color: "#46BFBD",
+				highlight: "#5AD3D1",
+				label: "Complete"
+			},
+			{
+				value: 50,
+				color:"#F7464A",
+				highlight: "#FF5A5E",
+				label: "In-Progress"
+			}
+		]
 
-		const salesChartElement = document.getElementById('salesChart');
-		const salesChart = echarts.init(salesChartElement, null, { renderer: 'svg' });
-		salesChart.setOption(salesData);
-		new ResizeObserver(() => salesChart.resize()).observe(salesChartElement);
+		var ctxl = $("#lineChartDemo").get(0).getContext("2d");
+		var lineChart = new Chart(ctxl).Line(data);
 
-		const supportChartElement = document.getElementById("supportRequestChart")
-		const supportChart = echarts.init(supportChartElement, null, { renderer: 'svg' });
-		supportChart.setOption(supportRequests);
-		new ResizeObserver(() => supportChart.resize()).observe(supportChartElement);
-
+		var ctxp = $("#pieChartDemo").get(0).getContext("2d");
+		var pieChart = new Chart(ctxp).Pie(pdata);

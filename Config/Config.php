@@ -8,7 +8,7 @@ date_default_timezone_set("Europe/Madrid");
 
 //Datos de conexión a Base de datos
 const DB_HOST = "localhost";
-const DB_NAME = "tienda";
+const DB_NAME = "db_tiendavirtual";
 const DB_USER = "root";
 const DB_PASSWORD = "";
 const DB_CHARSET = "charset=utf8";

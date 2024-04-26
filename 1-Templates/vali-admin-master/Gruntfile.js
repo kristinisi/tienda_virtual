@@ -1,5 +1,5 @@
-const sass = require('sass');
-module.exports = function (grunt) {
+const sass = require('node-sass');
+module.exports = function(grunt) {
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
 		watch: {
@@ -53,22 +53,11 @@ module.exports = function (grunt) {
 			options: {
 				map: false,
 				processors: [
-					require('autoprefixer')({ overrideBrowserslist: 'last 2 versions' }), // add vendor prefixes
+					require('autoprefixer')
 				]
 			},
 			dist: {
 				src: ['docs/css/*.css']
-			}
-		},
-		cssmin: {
-			target: {
-				files: [{
-					expand: true,
-					cwd: 'docs/css',
-					src: ['*.css', '!*.min.css'],
-					dest: 'docs/css',
-					ext: '.min.css'
-				}]
 			}
 		}
 	});
@@ -76,11 +65,10 @@ module.exports = function (grunt) {
 	// Load the Grunt plugins.
 	grunt.loadNpmTasks('grunt-sass');
 	grunt.loadNpmTasks('grunt-postcss');
-	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-pug');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 
 	// Set task aliases
 	grunt.registerTask('default', ['watch']);
-	grunt.registerTask('build', ['pug', 'sass', 'postcss', 'cssmin']);
+	grunt.registerTask('build', ['pug','sass','postcss']);
 };

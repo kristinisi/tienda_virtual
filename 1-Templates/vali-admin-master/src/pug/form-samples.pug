@@ -11,13 +11,13 @@ block content
 	.app-title
 		div
 			h1
-				i.bi.bi-ui-checks
+				i.fa.fa-edit
 				|  Form Samples
 			p Sample forms
 
 		ul.app-breadcrumb.breadcrumb
 			li.breadcrumb-item
-				i.bi.bi-house-door.fs-6
+				i.fa.fa-home.fa-lg
 			li.breadcrumb-item
 				| Forms
 			li.breadcrumb-item
@@ -29,20 +29,20 @@ block content
 				h3.tile-title Vertical Form
 				.tile-body
 					form
-						.mb-3
-							label.form-label Name
+						.form-group
+							label.control-label Name
 							input.form-control(type="text", placeholder="Enter full name")
 
-						.mb-3
-							label.form-label Email
+						.form-group
+							label.control-label Email
 							input.form-control(type="email", placeholder="Enter email address")
 
-						.mb-3
-							label.form-label Address
+						.form-group
+							label.control-label Address
 							textarea.form-control(rows="4", placeholder="Enter your address")
 
-						.mb-3
-							label.form-label Gender
+						.form-group
+							label.control-label Gender
 							.form-check
 								label.form-check-label
 									input.form-check-input(type='radio', name="gender")
@@ -52,11 +52,11 @@ block content
 									input.form-check-input(type='radio', name="gender")
 									| Female
 
-						.mb-3
-							label.form-label Identity Proof
+						.form-group
+							label.control-label Identity Proof
 							input.form-control(type="file")
 
-						.mb-3
+						.form-group
 							.form-check
 								label.form-check-label
 									input.form-check-input(type='checkbox')
@@ -64,11 +64,11 @@ block content
 
 				.tile-footer
 					button.btn.btn-primary(type="button")
-						i.bi.bi-check-circle-fill.me-2
+						i.fa.fa-fw.fa-lg.fa-check-circle
 						| Register
 					| &nbsp;&nbsp;&nbsp;
 					a.btn.btn-secondary(href="#")
-						i.bi.bi-x-circle-fill.me-2
+						i.fa.fa-fw.fa-lg.fa-times-circle
 						| Cancel
 
 		.col-md-6
@@ -76,23 +76,23 @@ block content
 				h3.tile-title Register
 				.tile-body
 					form.form-horizontal
-						.mb-3.row
-							label.form-label.col-md-3 Name
+						.form-group.row
+							label.control-label.col-md-3 Name
 							.col-md-8
 								input.form-control(type="text", placeholder="Enter full name")
 
-						.mb-3.row
-							label.form-label.col-md-3 Email
+						.form-group.row
+							label.control-label.col-md-3 Email
 							.col-md-8
 								input.form-control.col-md-8(type="email", placeholder="Enter email address")
 
-						.mb-3.row
-							label.form-label.col-md-3 Address
+						.form-group.row
+							label.control-label.col-md-3 Address
 							.col-md-8
 								textarea.form-control(rows="4", placeholder="Enter your address")
 
-						.mb-3.row
-							label.form-label.col-md-3 Gender
+						.form-group.row
+							label.control-label.col-md-3 Gender
 							.col-md-9
 								.form-check
 									label.form-check-label
@@ -103,12 +103,12 @@ block content
 										input.form-check-input(type='radio', name="gender")
 										| Female
 
-						.mb-3.row
-							label.form-label.col-md-3 Identity Proof
+						.form-group.row
+							label.control-label.col-md-3 Identity Proof
 							.col-md-8
 								input.form-control(type="file")
 
-						.mb-3.row
+						.form-group.row
 							.col-md-8.col-md-offset-3
 								.form-check
 									label.form-check-label
@@ -119,11 +119,11 @@ block content
 					.row
 						.col-md-8.col-md-offset-3
 							button.btn.btn-primary(type="button")
-								i.bi.bi-check-circle-fill.me-2
+								i.fa.fa-fw.fa-lg.fa-check-circle
 								| Register
 							| &nbsp;&nbsp;&nbsp;
 							a.btn.btn-secondary(href="#")
-								i.bi.bi-x-circle-fill.me-2
+								i.fa.fa-fw.fa-lg.fa-times-circle
 								| Cancel
 		.clearix
 
@@ -135,16 +135,16 @@ block content
 
 					form.row
 
-						.mb-3.col-md-3
-							label.form-label Name
+						.form-group.col-md-3
+							label.control-label Name
 							input.form-control(type="text", placeholder="Enter your name")
 
-						.mb-3.col-md-3
-							label.form-label Email
+						.form-group.col-md-3
+							label.control-label Email
 							input.form-control(type="text", placeholder="Enter your email")
 
-						.mb-3.col-md-4.align-self-end
+						.form-group.col-md-4.align-self-end
 							button.btn.btn-primary(type="button")
-								i.bi.bi-check-circle-fill.me-2
+								i.fa.fa-fw.fa-lg.fa-check-circle
 								| Subscribe
 
