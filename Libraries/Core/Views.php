@@ -10,9 +10,9 @@ class Views
         $controller = get_class($controller);
         //hacemos la validación para home
         if ($controller == "Home") {
-            $view = "./Views/" . $view . ".php";
+            $view = "Views/" . $view . ".php";
         } else {
-            $view = "./Views/" . $controller . "/" . $view . ".php";
+            $view = "Views/" . $controller . "/" . $view . ".php";
         }
 
         require_once($view);

@@ -77,15 +77,16 @@ function strClean($strCadena)
 //Genera una cotraseña de 10 caracteres
 function passGenerator($length = 10)
 {
-    $pass = "";
-    $longitudPass = $length;
-    $cadena = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxy1234567890";
-    $longitudCadena = strlen($cadena);
+    // $pass = "";
+    // $longitudPass = $length;
+    // $cadena = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxy1234567890";
+    // $longitudCadena = strlen($cadena);
 
-    for ($i = 1; $i <= $longitudPass; $i++) {
-        $pos = rand(0, $longitudCadena - 1);
-        $pass .= substr($cadena, $pos, 1);
-    }
+    // for ($i = 1; $i <= $longitudPass; $i++) {
+    //     $pos = rand(0, $longitudCadena - 1);
+    //     $pass .= substr($cadena, $pos, 1);
+    // }
+    $pass = "123456";
     return $pass;
 }
 

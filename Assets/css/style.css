@@ -5,7 +5,8 @@ body {
   font-family: "Hind Siliguri", sans-serif;
 }
 
-.app-header__logo {
+.app-header__logo,
+.login-content .logo h1 {
   font-family: "Bad Script", cursive;
 }
 

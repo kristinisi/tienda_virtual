@@ -1,4 +1,4 @@
-<!-- Modal -->
+<!-- Modal para NUEVO USUARIO-->
 <div class="modal fade" id="modalFormUsuario" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -42,6 +42,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="txtTelefono">Teléfono</label>
+                            <!-- onkeypress implica que cuando presionamos va a retornar lo que va a devolver la función controltag que le pasamos como parametro event que corresponde al evento que estamos realizando -->
                             <input type="text" class="form-control valid validNumber" id="txtTelefono" name="txtTelefono" required="" onkeypress="return controlTag(event);">
                             <div class="invalid-feedback">
                                 Por favor, ingrese un teléfono válido.
@@ -72,7 +73,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="txtPassword">Password</label>
-                            <input type="password" class="form-control" id="txtPassword" name="txtPassword" requiired>
+                            <input type="password" class="form-control" id="txtPassword" name="txtPassword">
                         </div>
                     </div>
                     <div class="tile-footer">
@@ -84,6 +85,7 @@
         </div>
     </div>
 </div>
+
 
 <!-- Modal para el botón vista usuario-->
 <div class="modal fade" id="modalViewUser" tabindex="-1" role="dialog" aria-hidden="true">
@@ -103,7 +105,7 @@
                             <td id="celIdentificacion">654654654</td>
                         </tr>
                         <tr>
-                            <td>Nombres:</td>
+                            <td>Nombre:</td>
                             <td id="celNombre">Jacob</td>
                         </tr>
                         <tr>

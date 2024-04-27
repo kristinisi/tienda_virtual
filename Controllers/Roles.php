@@ -14,6 +14,7 @@ class Roles extends Controllers
         $data['page_tag'] = "Roles Usuario HANAKO";
         $data['page_title'] = "Roles Usuario HANAKO";
         $data['page_name'] = "rol_usuario";
+        $data['page_functions_js'] = "functions_roles.js";
         //hacemos el llamado a la vista que queremos mostrar mandandole como parámetro el array 
         $this->views->getView($this, "roles", $data);
     }
@@ -32,9 +33,9 @@ class Roles extends Controllers
             }
             // El atributo rl: accedemos al item id del rol en cada posición
             $arrData[$i]['options'] = '<div class="text-center">
-            <button class="btn btn-info btn-sm btnPermisosRol" rl="' . $arrData[$i]['idrol'] . '" title="Permisos"><i class="fa-solid fa-key"></i></i></button>
-            <button class="btn btn-primary btn-sm btnEditRol" rl="' . $arrData[$i]['idrol'] . '" title="Editar"><i class="fa-solid fa-pencil"></i></button>
-            <button class="btn btn-danger btn-sm btnDelRol" rl="' . $arrData[$i]['idrol'] . '" title="Eliminar"><i class="fa-solid fa-x"></i></button>
+            <button class="btn btn-info btn-sm btnPermisosRol" onClick="fntPermisos(' . $arrData[$i]['idrol'] . ')" title="Permisos"><i class="fa-solid fa-key"></i></i></button>
+            <button class="btn btn-primary btn-sm btnEditRol" onClick="fntEditRol(' . $arrData[$i]['idrol'] . ')" title="Editar"><i class="fa-solid fa-pencil"></i></button>
+            <button class="btn btn-danger btn-sm btnDelRol" onClick="fntDelRol(' . $arrData[$i]['idrol'] . ')" title="Eliminar"><i class="fa-solid fa-x"></i></button>
                                         </div>';
         }
 
@@ -49,7 +50,9 @@ class Roles extends Controllers
         $arrData = $this->model->selectRoles();
         if (count($arrData) > 0) {
             for ($i = 0; $i < count($arrData); $i++) {
-                $htmlOptions .= '<option value="' . $arrData[$i]['idrol'] . '">' . $arrData[$i]['nombrerol'] . '</option>';
+                if ($arrData[$i]['status'] == 1) {
+                    $htmlOptions .= '<option value="' . $arrData[$i]['idrol'] . '">' . $arrData[$i]['nombrerol'] . '</option>';
+                }
             }
         }
         echo $htmlOptions; //retorna la variable

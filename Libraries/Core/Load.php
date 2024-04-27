@@ -1,6 +1,6 @@
 <?php
-$controller = ucwords($controller); //Para poder convertir la primera letra en matúscula para el case sensitive de los servidores
-$controllerFile = "./Controllers/" . $controller . ".php";
+$controller = ucwords($controller); //Para poder convertir la primera letra en mayúscula para el case sensitive de los servidores
+$controllerFile = "Controllers/" . $controller . ".php";
 if (file_exists($controllerFile)) {
     //en caso de que exista el controlador, lo requerimos
     require_once($controllerFile);
@@ -10,8 +10,8 @@ if (file_exists($controllerFile)) {
     if (method_exists($controller, $method)) {
         $controller->{$method}($params);
     } else {
-        require_once("./Controllers/Error.php");
+        require_once("Controllers/Error.php");
     }
 } else {
-    require_once("./Controllers/Error.php");
+    require_once("Controllers/Error.php");
 }
