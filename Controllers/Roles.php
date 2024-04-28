@@ -4,6 +4,11 @@ class Roles extends Controllers
 {
     public function __construct()
     {
+        //estamos inicializando la sesión para validar si ya existe una variable sesión login para que nos muestre la vista, de lo contrario nos redirecciona a alogin
+        session_start();
+        if (empty($_SESSION['login'])) {
+            header('Location: ' . base_url() . '/login');
+        }
         parent::__construct();
     }
 
@@ -71,6 +76,7 @@ class Roles extends Controllers
             } else {
                 $arrResponse = array("status" => true, "data" => $arrData);
             }
+            // dep($arrResponse);
             echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE); //pasamos el array a formato JSON
         }
         die(); //el die() finaliza el proceso

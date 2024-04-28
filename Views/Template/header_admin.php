@@ -18,20 +18,20 @@
 <body class="app sidebar-mini">
     <!-- Navbar-->
     <header class="app-header"><a class="app-header__logo" href="<?= base_url(); ?>/dashboard">HANAKO</a>
-        <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"><i class="fa-solid fa-bars"></i></a>
+        <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"><i class="fas fa-bars"></i></a>
         <!-- Navbar Right Menu-->
         <ul class="app-nav">
             <!-- User Menu-->
-            <li class="dropdown">
-                <a class="app-nav__item" href="#" data-bs-toggle="dropdown" aria-label="Open Profile Menu"><i class="fa-regular fa-user"></i></i></a>
+            <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="fa fa-user fa-lg"></i></a>
                 <ul class="dropdown-menu settings-menu dropdown-menu-right">
-                    <li><a class="dropdown-item" href="<?= base_url(); ?>/opciones"><i class="bi bi-gear me-2 fs-5"></i> Configuración</a></li>
-                    <li><a class="dropdown-item" href="<?= base_url(); ?>/perfil"><i class="bi bi-person me-2 fs-5"></i> Perfil</a></li>
-                    <li><a class="dropdown-item" href="<?= base_url(); ?>/logout"><i class="bi bi-box-arrow-right me-2 fs-5"></i> Salir</a></li>
+                    <li><a class="dropdown-item" href="<?= base_url(); ?>/opciones"><i class="fa fa-cog fa-lg"></i> Configuración</a></li>
+                    <li><a class="dropdown-item" href="<?= base_url(); ?>/usuarios/perfil"><i class="fa fa-user fa-lg"></i> Perfil</a></li>
+                    <li><a class="dropdown-item" href="<?= base_url(); ?>/logout"><i class="fa fa-sign-out fa-lg"></i> Salir</a></li>
                 </ul>
             </li>
         </ul>
     </header>
+
 
     <!-- Incluimos el nav después del header -->
     <!-- <?php require_once("nav_admin.php") ?> -->

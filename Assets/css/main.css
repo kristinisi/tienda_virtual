@@ -3734,7 +3734,7 @@ input[type="button"].btn-block {
   border: 0;
 }
 
-.dropdown-item:first-child {
+/* .dropdown-item:first-child {
   border-top-left-radius: calc(0.25rem - 0);
   border-top-right-radius: calc(0.25rem - 0);
 }
@@ -3742,6 +3742,16 @@ input[type="button"].btn-block {
 .dropdown-item:last-child {
   border-bottom-right-radius: calc(0.25rem - 0);
   border-bottom-left-radius: calc(0.25rem - 0);
+} */
+
+.dropdown-menu .dropdown-item:first-child {
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+}
+
+.dropdown-menu .dropdown-item:last-child {
+  border-bottom-right-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
 }
 
 .dropdown-item:hover,

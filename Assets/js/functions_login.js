@@ -5,6 +5,8 @@ $('.login-content [data-toggle="flip"]').click(function () {
   return false;
 });
 
+let divLoading = document.querySelector("#divLoading"); //cogemos el id del loading
+
 //Vamos a agregar todos los eventos que vayan dentro de la siguiente función
 document.addEventListener(
   "DOMContentLoaded",
@@ -24,6 +26,8 @@ document.addEventListener(
           swal("Por favor", "Escribe usuario y contraseña.", "error");
           return false;
         } else {
+          divLoading.style.display = "flex"; //le colocamos el estilo flex al que estaba por none
+
           //hacemos todo el proceso para enviar los datos al controlador
           let request = window.XMLHttpRequest
             ? new XMLHttpRequest()
@@ -33,7 +37,25 @@ document.addEventListener(
           request.open("POST", ajaxUrl, true); //abrimos la conexión enviandola por POST a la url
           request.send(formData); //enviamos el formData
 
-          console.log(request);
+          request.onreadystatechange = function () {
+            //si deadyState es 4 esque nos está devolviendo información al navegador
+            if (request.readyState != 4) return; //si es diferente de 4 no vamos a hacer nada
+            if (request.status == 200) {
+              //si salió bien
+              var objData = JSON.parse(request.responseText);
+              if (objData.status) {
+                //si el status es true (hizo login correctamente)
+                window.location = base_url + "/dashboard"; //redireccionamos a la parte administrativa que es el dashboard
+              } else {
+                swal("Atención", objData.msg, "error"); //salta una alerta
+                document.querySelector("#txtPassword").value = ""; //limpiamos el campo contraseña
+              }
+            } else {
+              swal("Atención", "Error en el proceso", "error");
+            }
+            divLoading.style.display = "none"; //volvemos a cambiar el display para que deje de mostrarse el loading
+            return false;
+          };
         }
       };
     }
