@@ -16,6 +16,12 @@
 </head>
 
 <body class="app sidebar-mini">
+    <!-- Metemos aquí el loading para que podamos aplicarlo en las vistas que queramos con simplemente activarlo -->
+    <div id="divLoading">
+        <div>
+            <img src="<?= media(); ?>/images/loading.svg" alt="Loading">
+        </div>
+    </div>
     <!-- Navbar-->
     <header class="app-header"><a class="app-header__logo" href="<?= base_url(); ?>/dashboard">HANAKO</a>
         <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"><i class="fas fa-bars"></i></a>

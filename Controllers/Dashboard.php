@@ -4,13 +4,14 @@ class Dashboard extends Controllers
 {
     public function __construct()
     {
-        parent::__construct();
-
-        //estamos inicializando la sesión para validar si ya existe una variable sesión login para que nos muestre la vista, de lo contrario nos redirecciona a alogin
+        // session_set_cookie_params(0, '/tienda_virtual', $_SERVER['HTTP_HOST'], false, true); //Establece los parámetros de la cookie para las sesiones
+        //estamos inicializando la sesión para validar si ya existe una variable sesión login para que nos muestre la vista
         session_start();
+        parent::__construct();
         if (empty($_SESSION['login'])) {
             header('Location: ' . base_url() . '/login');
         }
+        getPermisos(1);
     }
 
     public function dashboard($parems)
@@ -20,6 +21,7 @@ class Dashboard extends Controllers
         $data['page_tag'] = "Dashboard - HANAKO";
         $data['page_title'] = "Dashboard - HANAKO";
         $data['page_name'] = "dashboard";
+        $data['page_functions_js'] = "functions_dashboard.js";
         //hacemos el llamado a la vista que queremos mostrar mandandole como parámetro el array 
         $this->views->getView($this, "dashboard", $data);
     }

@@ -25,18 +25,23 @@ class Permisos extends Controllers
             } else {
                 //si ya tiene permisos el rol
                 for ($i = 0; $i < count($arrModulos); $i++) {
-                    //le asignamos como valor al array lo que va a tener en la posición de cada uno de los permisos modulo
-                    $arrPermisos = array(
-                        "r" => $arrPermisosRol[$i]["r"],
-                        "w" => $arrPermisosRol[$i]["w"],
-                        "u" => $arrPermisosRol[$i]["u"],
-                        "d" => $arrPermisosRol[$i]["d"],
-                    );
 
-                    //si coinciden los ids tanto como el de modulo como el de los permisos
-                    if ($arrModulos[$i]["idmodulo"] == $arrPermisosRol[$i]["moduloid"]) {
-                        $arrModulos[$i]["permisos"] = $arrPermisos; //le damos los valores del array permisos
+                    $arrPermisos = array("r" => 0, "w" => 0, "u" => 0, "d" => 0); //reiniciamos los valores
+
+                    //si existe el módulo en la tabla de los permisos con algún permiso ya asignado
+                    if (isset($arrPermisosRol[$i])) {
+
+                        //le asignamos como valor al array lo que va a tener en la posición de cada uno de los permisos modulo
+                        $arrPermisos = array(
+                            "r" => $arrPermisosRol[$i]["r"],
+                            "w" => $arrPermisosRol[$i]["w"],
+                            "u" => $arrPermisosRol[$i]["u"],
+                            "d" => $arrPermisosRol[$i]["d"],
+                        );
                     }
+                    //si coinciden los ids tanto como el de modulo como el de los permisos
+                    $arrModulos[$i]["permisos"] = $arrPermisos; //le damos los valores del array permisos
+
                 }
             }
             $arrPermisoRol["modulos"] = $arrModulos; //introducimos los modulos al array

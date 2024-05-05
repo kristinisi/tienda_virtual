@@ -33,7 +33,7 @@ document.addEventListener(
             ? new XMLHttpRequest()
             : new ActiveXObject("Microsoft.XMLHTTP"); //validamos el navegador en el que estamos
           let ajaxUrl = base_url + "/Login/loginUser"; //colocamos la url/el controlador/y el método
-          var formData = new FormData(formLogin); //creamos un objeto formData y le enviamos como parámetro todos los elementos del formulario
+          let formData = new FormData(formLogin); //creamos un objeto formData y le enviamos como parámetro todos los elementos del formulario
           request.open("POST", ajaxUrl, true); //abrimos la conexión enviandola por POST a la url
           request.send(formData); //enviamos el formData
 
@@ -42,7 +42,7 @@ document.addEventListener(
             if (request.readyState != 4) return; //si es diferente de 4 no vamos a hacer nada
             if (request.status == 200) {
               //si salió bien
-              var objData = JSON.parse(request.responseText);
+              let objData = JSON.parse(request.responseText);
               if (objData.status) {
                 //si el status es true (hizo login correctamente)
                 window.location = base_url + "/dashboard"; //redireccionamos a la parte administrativa que es el dashboard

@@ -41,6 +41,33 @@ function getModal(string $nameModal, $data)
     require_once($view_modal);
 }
 
+function getPermisos(int $idmodulo)
+{
+    require_once("Models/PermisosModel.php"); //requerimos el model permisos
+    $objPermisos = new PermisosModel();
+    $idrol = $_SESSION['userData']['idrol']; //obtenemos el id del rol con el cual estamos logueados
+    $arrPermisos = $objPermisos->permisosModulo($idrol);
+    $permisos = ''; //aqui almacenamos todos los modulos del rol
+    $permisosMod = ''; //vamos a almacenar todos los permisos del modulo donde nos encontramos
+    if (count($arrPermisos) > 0) { //si el array tiene registros
+        $permisos = $arrPermisos;
+        //si existe en la posicion del array lo que hemos enviado como parámetro introduce los datos sino lo deja vacio
+        $permisosMod = isset($arrPermisos[$idmodulo]) ? $arrPermisos[$idmodulo] : "";
+    }
+    //Creamos las variables de sesión donde colocamos los arrays
+    $_SESSION['permisos'] = $permisos;
+    $_SESSION['permisosMod'] = $permisosMod;
+}
+
+//Método que se conecta con LogingModel para poder acceder a la información de una persona a través de un id
+function sessionUser(int $idpersona)
+{
+    require_once("Models/LoginModel.php"); //Requerimos el archivo LoginModel para poder crearnos un nuevo objeto de login
+    $objLogin = new LoginModel(); //al tener creado el objeto pordemos usar todos los métodos del archivo
+    $request = $objLogin->sessionLogin($idpersona); //hacemos entramos a la sesión con el id de la persona que estamos recibiendo
+    return $request; //retornamos la información de la persona
+}
+
 //Elimina exceso de espacios entre palabras - evita las inyecciones sql en nuestros formularios
 function strClean($strCadena)
 {

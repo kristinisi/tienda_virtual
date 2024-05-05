@@ -3,10 +3,14 @@ headerAdmin($data);
 getModal('modalUsuarios', $data);
 ?>
 <main class="app-content">
+
+
     <div class="app-title">
         <div>
             <h1><i class="fa-solid fa-user-tag"></i> <?= $data['page_title'] ?>
-                <button class="btn btn-primary" type="button" onclick="openModal();"> <i class="fa-solid fa-plus"></i> Nuevo</button>
+                <?php if ($_SESSION['permisosMod']['r']) { ?>
+                    <button class="btn btn-primary" type="button" onclick="openModal();"> <i class="fa-solid fa-plus"></i> Nuevo</button>
+                <?php } ?>
             </h1>
         </div>
         <ul class="app-breadcrumb breadcrumb">
@@ -52,5 +56,6 @@ getModal('modalUsuarios', $data);
             </div>
         </div>
     </div>
+
 </main>
 <?php footerAdmin($data); ?>

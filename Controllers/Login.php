@@ -4,6 +4,7 @@ class Login extends Controllers
 {
     public function __construct()
     {
+        // session_set_cookie_params(0, '/tienda_virtual', $_SERVER['HTTP_HOST'], false, true); //Establece los parámetros de la cookie para las sesiones
         session_start(); //con session_start ya podemos crear variables de sesión
         if (isset($_SESSION['login'])) { //verificamos si existe la variable de sesion
             header('Location: ' . base_url() . '/dashboard'); //lo dejamos entrar al dahsboard
@@ -48,7 +49,8 @@ class Login extends Controllers
 
                         //hacemos lo siguiente para que cada veez que estemos en nuestro usuario y hagamos algun cambio se cargue automátigamente sin tener que cerrar sesion
                         $arrData = $this->model->sessionLogin($_SESSION['idUser']); //nos devuelve lo que nos da el método en el modelo, le mandamos como parámetro el id del usuario
-                        $_SESSION['userData'] = $arrData; //creamos la variable de sesión con los datos del array
+
+                        sessionUser($_SESSION['idUser']); //llamamos al método sessionUser(ubicado en helpers) que que a su vez lama a otro para iniciar la variale de sesion con los datos de la persona
 
                         $arrResponse = array('status' => true, 'msg' => "ok");
                     } else {

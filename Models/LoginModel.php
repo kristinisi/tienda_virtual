@@ -26,6 +26,7 @@ class LoginModel extends Mysql
         return $request;
     }
 
+    //método que se encarga de buscar y recuperar información a través de un id de usuario
     public function sessionLogin(int $iduser)
     {
         $this->intIdUsuario = $iduser;
@@ -34,6 +35,7 @@ class LoginModel extends Mysql
                 p.email_user, p.nit, p.nombrefiscal, p.direccionfiscal, r.idrol, r.nombrerol, p.status
                 FROM persona p INNER JOIN rol r ON p.rolid = r.idrol WHERE p.idpersona = $this->intIdUsuario";
         $request = $this->select($sql);
+        $_SESSION['userData'] = $request; //lo que nos devuelve la consulta va a ser almacenado en la variable de sesión(SE CREA AL HACER LOGIN)
         return $request;
     }
 }

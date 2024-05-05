@@ -19,7 +19,7 @@ class UsuariosModel extends Mysql
         parent::__construct();
     }
 
-    public function insertUsuario(string $identificacion, string $nombre, string $apellido, int $telefono, string $email, string $password, int $tipoid, int $status)
+    public function insertUsuario(string $identificacion, string $nombre, string $apellido, string $telefono, string $email, string $password, int $tipoid, int $status)
     {
 
         $this->strIdentificacion = $identificacion;
@@ -63,11 +63,17 @@ class UsuariosModel extends Mysql
     //Funcion que nos devuelve los usuarios con los datos para la datetable
     public function selectUsuarios()
     {
-        $sql = "SELECT p.idpersona,p.identificacion,p.nombre,p.apellidos,p.telefono,p.email_user,p.status,r.nombrerol 
+        //Tenemos un super administrador que es el id 1, lo que hacemos a continuación es que si otro administrador se conecta
+        //no pueda borrar al super usuario
+        $whereAdmin = "";
+        if ($_SESSION['idUser'] != 1) {
+            $whereAdmin = " AND p.idpersona != 1 ";
+        }
+        $sql = "SELECT p.idpersona,p.identificacion,p.nombre,p.apellidos,p.telefono,p.email_user,p.status, r.idrol, r.nombrerol 
 					FROM persona p 
 					INNER JOIN rol r
 					ON p.rolid = r.idrol
-					WHERE p.status != 0 ";
+					WHERE p.status != 0 " . $whereAdmin; //concatenamos el whereadmin
         $request = $this->select_all($sql);
         return $request;
     }
@@ -87,7 +93,7 @@ class UsuariosModel extends Mysql
         return $request;
     }
 
-    public function updateUsuario(int $idUsuario, string $identificacion, string $nombre, string $apellido, int $telefono, string $email, string $password, int $tipoid, int $status)
+    public function updateUsuario(int $idUsuario, string $identificacion, string $nombre, string $apellido, string $telefono, string $email, string $password, int $tipoid, int $status)
     {
 
         $this->intIdUsuario = $idUsuario;
@@ -147,5 +153,40 @@ class UsuariosModel extends Mysql
         $sql = "DELETE FROM persona WHERE idpersona = $this->intIdUsuario ";
         $request = $this->delete($sql);
         return $request;
+    }
+
+    //método que actualiza el perfil de usuario
+    public function updatePerfil(int $idUsuario, string $identificacion, string $nombre, string $apellido, string $telefono, string $password)
+    {
+        //le asignamos los valores a las propiedades
+        $this->intIdUsuario = $idUsuario;
+        $this->strIdentificacion = $identificacion;
+        $this->strNombre = $nombre;
+        $this->strApellido = $apellido;
+        $this->intTelefono = $telefono;
+        $this->strPassword = $password;
+
+        if ($this->strPassword != "") { //si se está enviando la contraseña
+            $sql = "UPDATE persona SET identificacion=?, nombre=?, apellidos=?, telefono=?, password=? 
+                    WHERE idpersona = $this->intIdUsuario ";
+            $arrData = array(
+                $this->strIdentificacion,
+                $this->strNombre,
+                $this->strApellido,
+                $this->intTelefono,
+                $this->strPassword
+            );
+        } else { //no se está enviando la contraseña
+            $sql = "UPDATE persona SET identificacion=?, nombre=?, apellidos=?, telefono=? 
+                    WHERE idpersona = $this->intIdUsuario ";
+            $arrData = array(
+                $this->strIdentificacion,
+                $this->strNombre,
+                $this->strApellido,
+                $this->intTelefono
+            );
+        }
+        $request = $this->update($sql, $arrData); //hacemos el update
+        return $request; //enviamos el resultado
     }
 }

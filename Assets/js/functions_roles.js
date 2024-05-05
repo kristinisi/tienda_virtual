@@ -1,5 +1,5 @@
 let tableRoles;
-
+let divLoading = document.querySelector("#divLoading");
 //añadimos un evento para que se cargue cuando se cargue el html
 document.addEventListener("DOMContentLoaded", function () {
   tableRoles = $("#tableRoles").dataTable({
@@ -40,6 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
       swal("Atención", "Todos los campos son obligatorios.", "error"); // alerta con diseño
       return false;
     }
+    divLoading.style.display = "flex";
     // detectamos si estamos en un navegador chrome o explorer y crea un xmlhttp según el navegador
     let request = window.XMLHttpRequest
       ? new XMLHttpRequest()
@@ -64,6 +65,8 @@ document.addEventListener("DOMContentLoaded", function () {
           swal("Error", objData.msg, "error"); //si no tiene statur muestra un mensaje de error
         }
       }
+      divLoading.style.display = "none";
+      return false;
     };
   };
 });
@@ -232,7 +235,7 @@ function fntSavePermisos(event) {
     : new ActiveXObject("Microsoft.XMLHTTP"); //validamos el navegador en el que estamos
   let ajaxUrl = base_url + "/Permisos/setPermisos"; //colocamos la url/el controlador/y el método
   let formElement = document.querySelector("#formPermisos"); //seleccionamos el formulario
-  var formData = new FormData(formElement); //creamos un objeto formData y le enviamos como parámetro todos los elementos del formulario
+  let formData = new FormData(formElement); //creamos un objeto formData y le enviamos como parámetro todos los elementos del formulario
   request.open("POST", ajaxUrl, true); //abrimos la conexión enviandola por POST a la url
   request.send(formData); //enviamsos el formData
 

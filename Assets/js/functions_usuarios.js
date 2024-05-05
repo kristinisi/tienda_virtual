@@ -1,96 +1,202 @@
 let tableUsuarios;
-
+let divLoading = document.querySelector("#divLoading"); //cogemos el id del loading
 //al modmeto de cargar todo el html va a agregar los eventos que configuremos dentro de este script
-document.addEventListener("DOMContentLoaded", function () {}, false);
+document.addEventListener(
+  "DOMContentLoaded",
+  function () {
+    //nos dirigimos al id de la tabla usuarios para la datatable y cargamos el json con .datatable
+    tableUsuarios = $("#tableUsuarios").dataTable({
+      aProcessing: true,
+      aServerSide: true,
+      language: {
+        url: "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json",
+      },
+      ajax: {
+        url: " " + base_url + "/Usuarios/getUsuarios", //nos devuelve la dirección del controlador con el método
+        dataSrc: "",
+      },
+      columns: [
+        //colocamos las columnas que vamos a obtener
+        { data: "idpersona" },
+        { data: "nombre" },
+        { data: "apellidos" },
+        { data: "email_user" },
+        { data: "telefono" },
+        { data: "nombrerol" },
+        { data: "status" },
+        { data: "options" },
+      ],
+      resonsieve: "true",
+      bDestroy: true,
+      iDisplayLength: 1,
+      order: [[0, "desc"]],
+    });
 
-//nos dirigimos al id de la tabla usuarios para la datatable y cargamos el json con .datatable
-tableUsuarios = $("#tableUsuarios").dataTable({
-  aProcessing: true,
-  aServerSide: true,
-  language: {
-    url: "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json",
-  },
-  ajax: {
-    url: " " + base_url + "/Usuarios/getUsuarios", //nos devuelve la dirección del controlador con el método
-    dataSrc: "",
-  },
-  columns: [
-    //colocamos las columnas que vamos a obtener
-    { data: "idpersona" },
-    { data: "nombre" },
-    { data: "apellidos" },
-    { data: "email_user" },
-    { data: "telefono" },
-    { data: "nombrerol" },
-    { data: "status" },
-    { data: "options" },
-  ],
-  resonsieve: "true",
-  bDestroy: true,
-  iDisplayLength: 1,
-  order: [[0, "desc"]],
-});
+    //si existe el elemento formusuario
+    if (document.querySelector("#formUsuario")) {
+      let formUsuario = document.querySelector("#formUsuario"); //hacemos referencia al formulario usuario
+      formUsuario.onsubmit = function (e) {
+        e.preventDefault();
 
-let formUsuario = document.querySelector("#formUsuario"); //hacemos referencia al formulario usuario
-formUsuario.onsubmit = function (e) {
-  e.preventDefault();
+        let strIdentificacion =
+          document.querySelector("#txtIdentificacion").value;
+        let strNombre = document.querySelector("#txtNombre").value;
+        let strApellido = document.querySelector("#txtApellido").value;
+        let strEmail = document.querySelector("#txtEmail").value;
+        let intTelefono = document.querySelector("#txtTelefono").value;
+        let intTipousuario = document.querySelector("#listRolid").value;
+        let strPassword = document.querySelector("#txtPassword").value;
 
-  let strIdentificacion = document.querySelector("#txtIdentificacion").value;
-  let strNombre = document.querySelector("#txtNombre").value;
-  let strApellido = document.querySelector("#txtApellido").value;
-  let strEmail = document.querySelector("#txtEmail").value;
-  let intTelefono = document.querySelector("#txtTelefono").value;
-  let intTipousuario = document.querySelector("#listRolid").value;
-  let strPassword = document.querySelector("#txtPassword").value;
+        //si hay algún campo vacío hacemos que salte una alerta
+        if (
+          strIdentificacion == "" ||
+          strApellido == "" ||
+          strNombre == "" ||
+          strEmail == "" ||
+          intTelefono == "" ||
+          intTipousuario == ""
+        ) {
+          swal("Atención", "Todos los campos son obligatorios.", "error");
+          return false;
+        }
 
-  //si hay algún campo vacío hacemos que salte una alerta
-  if (
-    strIdentificacion == "" ||
-    strApellido == "" ||
-    strNombre == "" ||
-    strEmail == "" ||
-    intTelefono == "" ||
-    intTipousuario == ""
-  ) {
-    swal("Atención", "Todos los campos son obligatorios.", "error");
-    return false;
-  }
+        //Hacemos lo siguiente para asegurarnos que no se envían datos incorrectos, mal o incompletos a través de ajax
+        let elementsValid = document.getElementsByClassName("valid"); //obtenemos todos los elemeentos con la clase valid
+        for (let i = 0; i < elementsValid.length; i++) {
+          //obtenemos todos los elementos valid y los recorremos
+          if (elementsValid[i].classList.contains("is-invalid")) {
+            //si contiene el elemento is-invalid
+            swal(
+              "Atención",
+              "Por favor verifique los campos en rojo.",
+              "error"
+            ); //Nos va a mostrar una alerta
+            return false;
+          }
+        }
+        divLoading.style.display = "flex";
+        let request = window.XMLHttpRequest
+          ? new XMLHttpRequest()
+          : new ActiveXObject("Microsoft.XMLHTTP");
+        let ajaxUrl = base_url + "/Usuarios/setUsuario"; //vamos al metodo del controlador
+        let formData = new FormData(formUsuario);
+        request.open("POST", ajaxUrl, true); //abrimos conexión para enviar datos por POST
+        request.send(formData); //enviamos la información
 
-  //Hacemos lo siguiente para asegurarnos que no se envían datos incorrectos, mal o incompletos a través de ajax
-  let elementsValid = document.getElementsByClassName("valid"); //obtenemos todos los elemeentos con la clase valid
-  for (let i = 0; i < elementsValid.length; i++) {
-    //obtenemos todos los elementos valid y los recorremos
-    if (elementsValid[i].classList.contains("is-invalid")) {
-      //si contiene el elemento is-invalid
-      swal("Atención", "Por favor verifique los campos en rojo.", "error"); //Nos va a mostrar una alerta
-      return false;
+        //validamos el resultado
+        request.onreadystatechange = function () {
+          if (request.readyState == 4 && request.status == 200) {
+            let objData = JSON.parse(request.responseText); //convertimos a un objeto lo que estamos obteniendo en request.responseText
+            if (objData.status) {
+              //si se guardó el registro
+              $("#modalFormUsuario").modal("hide"); //ocultamos el modal
+              formUsuario.reset(); //reseteamos los cmpos del formulario
+              swal("Usuarios", objData.msg, "success"); //mostramos la alerta de success
+              tableUsuarios.api().ajax.reload(); //hacemos que los datos aparezcan en la datatable
+            } else {
+              swal("Error", objData.msg, "error"); //mostramos la alerta del error
+            }
+          }
+          divLoading.style.display = "none";
+          return false;
+        };
+      };
     }
-  }
 
-  let request = window.XMLHttpRequest
-    ? new XMLHttpRequest()
-    : new ActiveXObject("Microsoft.XMLHTTP");
-  let ajaxUrl = base_url + "/Usuarios/setUsuario"; //vamos al metodo del controlador
-  let formData = new FormData(formUsuario);
-  request.open("POST", ajaxUrl, true); //abrimos conexión para enviar datos por POST
-  request.send(formData); //enviamos la información
+    //ACTUALIZAR PERFIL
+    if (document.querySelector("#formPerfil")) {
+      let formPerfil = document.querySelector("#formPerfil"); //hacemos referencia al formulario usuario
+      formPerfil.onsubmit = function (e) {
+        e.preventDefault();
 
-  //validamos el resultado
-  request.onreadystatechange = function () {
-    if (request.readyState == 4 && request.status == 200) {
-      let objData = JSON.parse(request.responseText); //convertimos a un objeto lo que estamos obteniendo en request.responseText
-      if (objData.status) {
-        //si se guardó el registro
-        $("#modalFormUsuario").modal("hide"); //ocultamos el modal
-        formUsuario.reset(); //reseteamos los cmpos del formulario
-        swal("Usuarios", objData.msg, "success"); //mostramos la alerta de success
-        tableUsuarios.api().ajax.reload(); //hacemos que los datos aparezcan en la datatable
-      } else {
-        swal("Error", objData.msg, "error"); //mostramos la alerta del error
-      }
+        let strIdentificacion =
+          document.querySelector("#txtIdentificacion").value;
+        let strNombre = document.querySelector("#txtNombre").value;
+        let strApellido = document.querySelector("#txtApellido").value;
+        let intTelefono = document.querySelector("#txtTelefono").value;
+        let strPassword = document.querySelector("#txtPassword").value;
+        let strPasswordConfirm = document.querySelector(
+          "#txtPasswordConfirm"
+        ).value;
+
+        //si hay algún campo vacío hacemos que salte una alerta
+        if (
+          strIdentificacion == "" ||
+          strApellido == "" ||
+          strNombre == "" ||
+          intTelefono == ""
+        ) {
+          swal("Atención", "Todos los campos son obligatorios.", "error");
+          return false;
+        }
+
+        //Para cambiar la contaseña y validarla
+        if (strPassword != "" || strPasswordConfirm != "") {
+          if (strPassword != strPasswordConfirm) {
+            swal("Atención", "Las contraseñas no son iguales.", "info");
+            return false;
+          }
+        }
+
+        //Hacemos lo siguiente para asegurarnos que no se envían datos incorrectos, mal o incompletos a través de ajax
+        let elementsValid = document.getElementsByClassName("valid"); //obtenemos todos los elemeentos con la clase valid
+        for (let i = 0; i < elementsValid.length; i++) {
+          //obtenemos todos los elementos valid y los recorremos
+          if (elementsValid[i].classList.contains("is-invalid")) {
+            //si contiene el elemento is-invalid
+            swal(
+              "Atención",
+              "Por favor verifique los campos en rojo.",
+              "error"
+            ); //Nos va a mostrar una alerta
+            return false;
+          }
+        }
+        divLoading.style.display = "flex"; //le colocamos el estilo flex al que estaba por none
+
+        let request = window.XMLHttpRequest
+          ? new XMLHttpRequest()
+          : new ActiveXObject("Microsoft.XMLHTTP");
+        let ajaxUrl = base_url + "/Usuarios/putPerfil"; //vamos al metodo del controlador
+        let formData = new FormData(formPerfil);
+        request.open("POST", ajaxUrl, true); //abrimos conexión para enviar datos por POST
+        request.send(formData); //enviamos la información
+
+        //validamos el resultado
+        request.onreadystatechange = function () {
+          if (request.readyState != 4) return; //si no se está devolviendo información hacia el navegador hace return
+          if (request.status == 200) {
+            //si en el status es 200 quiere decir que si se envia informacion
+            let objData = JSON.parse(request.responseText); //convertimos a un objeto lo que estamos obteniendo en request.responseText
+            if (objData.status) {
+              $("#modalFormPerfil").modal("hide"); //ocultamos el modal
+              swal(
+                {
+                  title: "",
+                  text: objData.msg, //mostramos lo que nos va a devolver el ayax
+                  type: "success",
+                  confirmButtonText: "Aceptar", //cuando le demos clic al boton aceptar
+                  closeOnConfirm: false,
+                },
+                function (isConfirm) {
+                  //se va a ejecutar la función
+                  if (isConfirm) {
+                    location.reload(); //si es verdadera va a refrescar la página para volver a cargar los datos ya actualizados
+                  }
+                }
+              );
+            } else {
+              swal("Error", objData.msg, "error"); //mostramos la alerta del error
+            }
+          }
+          divLoading.style.display = "none";
+          return false;
+        };
+      };
     }
-  };
-};
+  },
+  false
+);
 
 window.addEventListener(
   "load",
@@ -105,21 +211,24 @@ window.addEventListener(
 
 //creamos una función que va a hacer la petición ajax
 function fntRolesUsuario() {
-  let ajaxUrl = base_url + "/Roles/getSelectRoles";
-  let request = window.XMLHttpRequest
-    ? new XMLHttpRequest()
-    : new ActiveXObject("Microsoft.XMLHTTP");
-  request.open("GET", ajaxUrl, true);
-  request.send();
+  if (document.querySelector("#listRolid")) {
+    //si existe lo va a ejecutar
+    let ajaxUrl = base_url + "/Roles/getSelectRoles";
+    let request = window.XMLHttpRequest
+      ? new XMLHttpRequest()
+      : new ActiveXObject("Microsoft.XMLHTTP");
+    request.open("GET", ajaxUrl, true);
+    request.send();
 
-  //obtenemos la respuesta
-  request.onreadystatechange = function () {
-    if (request.readyState == 4 && request.status == 200) {
-      document.querySelector("#listRolid").innerHTML = request.responseText; //le colocamos en el select los options
-      document.querySelector("#listRolid").value = 1; //nos dirijimos al select poniendo el primer option
-      $("#lisrRolid").selectpicker("render"); //actualizamos el select para que se muestren los registros
-    }
-  };
+    //obtenemos la respuesta
+    request.onreadystatechange = function () {
+      if (request.readyState == 4 && request.status == 200) {
+        document.querySelector("#listRolid").innerHTML = request.responseText; //le colocamos en el select los options
+        document.querySelector("#listRolid").value = 1; //nos dirijimos al select poniendo el primer option
+        $("#lisrRolid").selectpicker("render"); //actualizamos el select para que se muestren los registros
+      }
+    };
+  }
 }
 
 //Función que muestra la vista de un usuario
@@ -214,22 +323,6 @@ function fntEditUsuario(idusuario) {
     $("#modalFormUsuario").modal("show");
   };
 }
-
-function openModal() {
-  document.querySelector("#idUsuario").value = ""; //limpiamos el id para que no haya complicaciones
-  document
-    .querySelector(".modal-header")
-    .classList.replace("headerUpdate", "headerRegister"); //reemplazamos la clase
-  document
-    .querySelector("#btnActionForm")
-    .classList.replace("btn-info", "btn-primary"); //reemplazamos el botón
-  document.querySelector("#btnText").innerHTML = "Guardar"; //Cambiamos el span
-  document.querySelector("#titleModal").innerHTML = "Nuevo Usuario"; //Cambiamos el título
-  document.querySelector("#formUsuario").reset(); //reseteamos el formulario
-
-  $("#modalFormUsuario").modal("show");
-}
-
 //funcion que dota de funcionalidad el boton eliminar
 function fntDelUsuario(idpersona) {
   let idUsuario = idpersona; //obtenemos el valor del atributo que es el id del usuario
@@ -252,7 +345,7 @@ function fntDelUsuario(idpersona) {
           ? new XMLHttpRequest()
           : new ActiveXObject("Microsoft.XMLHTTP"); //validamos el navegador en el que estamos
         let ajaxUrl = base_url + "/Usuarios/delUsuario/";
-        var strData = "idUsuario=" + idUsuario;
+        let strData = "idUsuario=" + idUsuario;
         request.open("POST", ajaxUrl, true);
         request.setRequestHeader(
           "Content-Type",
@@ -265,10 +358,6 @@ function fntDelUsuario(idpersona) {
             if (objData.status) {
               swal("Eliminar!", objData.msg, "success");
               tableUsuarios.api().ajax.reload(); //hacemos que los datos aparezcan en la datatable
-              fntRolesUsuario();
-              fntViewUsuario();
-              fntEditUsuario();
-              fntDelUsuario();
             } else {
               swal("Atención!", objData.msg, "error");
             }
@@ -277,4 +366,23 @@ function fntDelUsuario(idpersona) {
       }
     }
   );
+}
+
+function openModal() {
+  document.querySelector("#idUsuario").value = ""; //limpiamos el id para que no haya complicaciones
+  document
+    .querySelector(".modal-header")
+    .classList.replace("headerUpdate", "headerRegister"); //reemplazamos la clase
+  document
+    .querySelector("#btnActionForm")
+    .classList.replace("btn-info", "btn-primary"); //reemplazamos el botón
+  document.querySelector("#btnText").innerHTML = "Guardar"; //Cambiamos el span
+  document.querySelector("#titleModal").innerHTML = "Nuevo Usuario"; //Cambiamos el título
+  document.querySelector("#formUsuario").reset(); //reseteamos el formulario
+
+  $("#modalFormUsuario").modal("show");
+}
+
+function openModalPerfil() {
+  $("#modalFormPerfil").modal("show");
 }

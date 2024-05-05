@@ -35,7 +35,7 @@ function controlTag(e) {
 
 //Función que valida un texto sin números como nombre y apellidos
 function testText(txtString) {
-  var stringText = new RegExp(/^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/); //permitimos el ingreso de las letras
+  let stringText = new RegExp(/^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/); //permitimos el ingreso de las letras
   if (stringText.test(txtString)) {
     return true;
   } else {
@@ -44,7 +44,7 @@ function testText(txtString) {
 }
 
 function testNumero(num) {
-  var numero = new RegExp(/^([0-9])*$/);
+  let numero = new RegExp(/^([0-9])*$/);
   if (numero.test(num)) {
     return true;
   } else {
@@ -53,7 +53,7 @@ function testNumero(num) {
 }
 
 function fntEmailValidate(email) {
-  var stringEmail = new RegExp(
+  let stringEmail = new RegExp(
     /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/
   );
   if (stringEmail.test(email) == false) {
