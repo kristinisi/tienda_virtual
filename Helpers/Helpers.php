@@ -68,6 +68,22 @@ function sessionUser(int $idpersona)
     return $request; //retornamos la información de la persona
 }
 
+//Método que recibe el array con los datos de la foto y el nombre de la imagen 
+//guardamos la imagen en la carpeta
+function uploadImage(array $data, string $name)
+{
+    $url_temp = $data['tmp_name']; //accedemos a la ruta temporal 
+    $destino    = 'Assets/images/uploads/' . $name; //ruta donde vamos a colocar la imagen con el nombre
+    $move = move_uploaded_file($url_temp, $destino); //reccibe la ruta temporal y la ruta destino para mover la imagen
+    return $move;
+}
+
+//eliminamos la imagen del directorio donde se encuentra por su nombre como parámetro
+function deleteFile(string $name)
+{
+    unlink('Assets/images/uploads/' . $name);
+}
+
 //Elimina exceso de espacios entre palabras - evita las inyecciones sql en nuestros formularios
 function strClean($strCadena)
 {

@@ -113,7 +113,7 @@ class Roles extends Controllers
             if ($intIdRol == 0) {
                 //crear
                 $request_rol = $this->model->insertRol($strRol, $strDescripcion, $intStatus);
-                $option = 1;
+                $option = 1; //para el mensaje de guuardar o actualizar
             } else {
                 //actualizar
                 $request_rol = $this->model->updateRol($intIdRol, $strRol, $strDescripcion, $intStatus);
