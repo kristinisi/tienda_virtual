@@ -189,4 +189,20 @@ class Categorias extends Controllers
         }
         die();
     }
+
+    //función que saca las categorías para el select productos
+    public function getSelectCategorias()
+    {
+        $htmlOptions = "";
+        $arrData = $this->model->selectCategorias();
+        if (count($arrData) > 0) {
+            for ($i = 0; $i < count($arrData); $i++) { //recorremos el array
+                if ($arrData[$i]['status'] == 1) { //solo nos va a mostrar las categorías activas
+                    $htmlOptions .= '<option value="' . $arrData[$i]['idcategoria'] . '">' . $arrData[$i]['nombre'] . '</option>';
+                }
+            }
+        }
+        echo $htmlOptions; //devolvemos el resultado
+        die();
+    }
 }

@@ -1,9 +1,3 @@
-<head>
-    <!-- Main CSS-->
-    <link rel="stylesheet" type="text/css" href="<?= media(); ?>/css/main.css">
-    <link rel="stylesheet" type="text/css" href="<?= media(); ?>/css/bootstrap-select.min.css">
-    <link rel="stylesheet" type="text/css" href="<?= media(); ?>/css/style.css">
-</head>
 <!-- Modal -->
 <div class="modal fade" id="modalFormCategorias" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -15,7 +9,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="formCategoria" name="formCategoria" class="form-horizontal" novalidate>
+                <form id="formCategoria" name="formCategoria" class="form-horizontal needs-validation" novalidate>
                     <input type="hidden" id="idCategoria" name="idCategoria" value="">
                     <input type="hidden" id="foto_actual" name="foto_actual" value="">
                     <input type="hidden" id="foto_remove" name="foto_remove" value="0">
@@ -24,18 +18,27 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label">Nombre <span class="required">*</span></label>
-                                <input class="form-control" id="txtNombre" name="txtNombre" type="text" placeholder="Nombre Categoría" required="">
+                                <input class="form-control" id="txtNombre" name="txtNombre" type="text" placeholder="Nombre Categoría" required>
+                                <div class="invalid-feedback">
+                                    Por favor, ingrese un nombre válido.
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">Descripción <span class="required">*</span></label>
-                                <textarea class="form-control" id="txtDescripcion" name="txtDescripcion" rows="2" placeholder="Descripción Categoría" required=""></textarea>
+                                <textarea class="form-control" id="txtDescripcion" name="txtDescripcion" rows="2" placeholder="Descripción Categoría" required></textarea>
+                                <div class="invalid-feedback">
+                                    Por favor, ingrese unA DESCRIPCIÓN válidA.
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="exampleSelect1">Estado <span class="required">*</span></label>
-                                <select class="form-control selectpicker" id="listStatus" name="listStatus" required="">
+                                <select class="form-control selectpicker" id="listStatus" name="listStatus" required>
                                     <option value="1">Activo</option>
                                     <option value="2">Inactivo</option>
                                 </select>
+                                <div class="invalid-feedback">
+                                    Por favor, ingrese un estado.
+                                </div>
                             </div>
                         </div>
                         <!-- Parte del html para la imagen -->

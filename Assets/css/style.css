@@ -144,3 +144,21 @@ body {
   width: 200px;
   margin: auto;
 }
+
+/* Estilo para el borde del select productos  */
+.bootstrap-select > .dropdown-toggle {
+  border: 1px solid #ccc;
+}
+
+/* estilos para las columnas de la datatable */
+.textcenter {
+  text-align: center;
+}
+
+.textright {
+  text-align: right;
+}
+
+.textleft {
+  text-align: left;
+}
