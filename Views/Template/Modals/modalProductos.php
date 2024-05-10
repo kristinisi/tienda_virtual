@@ -88,21 +88,22 @@
                             <hr>
                             <div id="containerImages">
                                 <!-- <div id="div24">
-                             <div class="prevImage">
-                                 <img src="<?= media(); ?>/images/uploads/producto1.jpg">
-                             </div>
-                             <input type="file" name="foto" id="img1" class="inputUploadfile">
-                             <label for="img1" class="btnUploadfile"><i class="fas fa-upload "></i></label>
-                             <button class="btnDeleteImage" type="button" onclick="fntDelItem('div24')"><i class="fas fa-trash-alt"></i></button>
-                         </div>
-                         <div id="div24">
-                             <div class="prevImage">
-                                 <img class="loading" src="<?= media(); ?>/images/loading.svg">
-                             </div>
-                             <input type="file" name="foto" id="img1" class="inputUploadfile">
-                             <label for="img1" class="btnUploadfile"><i class="fas fa-upload "></i></label>
-                             <button class="btnDeleteImage" type="button" onclick="fntDelItem('div24')"><i class="fas fa-trash-alt"></i></button>
-                         </div> -->
+                                    <div class="prevImage">
+                                        <img src="<?= media(); ?>/images/uploads/rosas_capullos.png">
+                                    </div>
+                                    <input type="file" name="foto" id="img1" class="inputUploadfile">
+                                    <label for="img1" class="btnUploadfile"><i class="fas fa-upload "></i></label>
+                                    <button class="btnDeleteImage" type="button" onclick="fntDelItem('div24')"><i class="fas fa-trash-alt"></i></button>
+                                </div> -->
+                                <!-- Para mostrar la imagen de carga hasta que se cargue la imagen -->
+                                <!-- <div id="div24">
+                                    <div class="prevImage">
+                                        <img class="loading" src="<?= media(); ?>/images/loading.svg">
+                                    </div>
+                                    <input type="file" name="foto" id="img1" class="inputUploadfile">
+                                    <label for="img1" class="btnUploadfile"><i class="fas fa-upload "></i></label>
+                                    <button class="btnDeleteImage" type="button" onclick="fntDelItem('div24')"><i class="fas fa-trash-alt"></i></button>
+                                </div> -->
 
                             </div>
                         </div>
@@ -127,10 +128,6 @@
             <div class="modal-body">
                 <table class="table table-bordered">
                     <tbody>
-                        <tr>
-                            <td>Codigo:</td>
-                            <td id="celCodigo"></td>
-                        </tr>
                         <tr>
                             <td>Nombres:</td>
                             <td id="celNombre"></td>
@@ -157,8 +154,7 @@
                         </tr>
                         <tr>
                             <td>Fotos de referencia:</td>
-                            <td id="celFotos">
-                            </td>
+                            <td id="celFotos"></td>
                         </tr>
                     </tbody>
                 </table>

@@ -19,3 +19,9 @@ const SPM = ".";
 
 //Simbolo de la moneda
 const SMONEY = "€";
+
+//variable para las categorias del slider
+const CAT_SLIDER = "1,2,3";
+
+//variable para las categorias del banner
+const CAT_BANNER = "1,2,3";

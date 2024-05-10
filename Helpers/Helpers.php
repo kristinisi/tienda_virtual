@@ -25,6 +25,20 @@ function footerAdmin($data = "")
     require_once($view_footer);
 }
 
+//Retorna la URL del header del tienda
+function headerTienda($data = "")
+{
+    $view_header = "./Views/Template/header_tienda.php";
+    require_once($view_header);
+}
+
+//Retorna la URL del footer del tienda
+function footerTienda($data = "")
+{
+    $view_footer = "./Views/Template/footer_tienda.php";
+    require_once($view_footer);
+}
+
 //Muestra información formateada (para ver mejor los arrays)
 function dep($data)
 {
@@ -131,17 +145,6 @@ function passGenerator($length = 10)
     // }
     $pass = "123456";
     return $pass;
-}
-
-//Genera un token (lo vamos usar para reestablecer contraseñas)
-function token()
-{
-    $r1 = bin2hex(random_bytes(10));
-    $r2 = bin2hex(random_bytes(10));
-    $r3 = bin2hex(random_bytes(10));
-    $r4 = bin2hex(random_bytes(10));
-    $token = $r1 . '-' . $r2 . '-' . $r3 . '-' . $r4;
-    return $token;
 }
 
 //Formato para valores monenarios

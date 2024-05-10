@@ -1,10 +1,3 @@
-// Login Page Flipbox control
-//cambia el estado visual de un elemento HTML cuando se hace clic en otro elemento específico. -- ESTO LO PUEDO QUITAR PORQUE NO RECUPERAMOS CONTRASEÑA Y NO SE MUESTRA EL OTRO FORMULARIO
-$('.login-content [data-toggle="flip"]').click(function () {
-  $(".login-box").toggleClass("flipped");
-  return false;
-});
-
 let divLoading = document.querySelector("#divLoading"); //cogemos el id del loading
 
 //Vamos a agregar todos los eventos que vayan dentro de la siguiente función
