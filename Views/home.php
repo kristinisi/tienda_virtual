@@ -14,6 +14,7 @@
 
                 <?php
                 for ($i = 0; $i < count($arrSlider); $i++) {
+                    $ruta = $arrSlider[$i]['ruta']; //guardamos en una variable la ruta de la categoria
                 ?>
 
                     <div class="item-slick1" style="background-image: url(<?= $arrSlider[$i]['portada'] ?>);">
@@ -32,8 +33,8 @@
                                 </div>
 
                                 <div class="layer-slick1 animated visible-false" data-appear="zoomIn" data-delay="1600">
-                                    <a href=" <?= base_url() . "/tienda/categoria/" . $arrSlider[$i]['nombre'] ?>" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
-                                        Ir a la tienda
+                                    <a href=" <?= base_url() . "/tienda/categoria/" . $arrSlider[$i]['idcategoria'] . "/" . $ruta ?>" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
+                                        Ver productos
                                     </a>
                                 </div>
                             </div>
@@ -54,12 +55,13 @@
             <div class="row">
                 <?php
                 for ($i = 0; $i < count($arrBanner); $i++) {
+                    $ruta = $arrBanner[$i]['ruta']; //guardamos en una variable la ruta de la categoria
                 ?>
                     <div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
                         <div class="block1 wrap-pic-w">
                             <img src="<?= $arrBanner[$i]['portada'] ?>" alt="<?= $arrBanner[$i]['nombre'] ?>">
 
-                            <a href="<?= base_url() . "/tienda/categoria/" . $arrBanner[$i]['nombre'] ?>" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+                            <a href="<?= base_url() . "/tienda/categoria/" . $arrBanner[$i]['idcategoria'] . "/" . $ruta ?>" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
                                 <div class="block1-txt-child1 flex-col-l">
                                     <span class="block1-name ltext-102 trans-04 p-b-8">
                                         <?= $arrBanner[$i]['nombre'] ?>
@@ -96,6 +98,7 @@
             <div class="row isotope-grid">
                 <?php
                 for ($i = 0; $i < count($arrProductos); $i++) {
+                    $ruta = $arrProductos[$i]['ruta']; //obtenemos la ruta del producto
                     if (count($arrProductos[$i]['images'])) {
                         $portada = $arrProductos[$i]['images'][0]['url_image'];
                     } else {
@@ -107,14 +110,14 @@
                             <div class="block2-pic hov-img0">
                                 <img src="<?= $portada ?>" alt="<?= $arrProductos[$i]['nombre'] ?>">
 
-                                <a href="<?= base_url() . "/tienda/producto/" . $arrProductos[$i]['nombre'] ?>" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
+                                <a href="<?= base_url() . "/tienda/producto/" . $arrProductos[$i]['idproducto'] . "/" . $ruta; ?>" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
                                     Ver producto
                                 </a>
                             </div>
 
                             <div class="block2-txt flex-w flex-t p-t-14">
                                 <div class="block2-txt-child1 flex-col-l ">
-                                    <a href="<?= base_url() . "/tienda/producto/" . $arrProductos[$i]['nombre'] ?>" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                                    <a href="<?= base_url() . "/tienda/producto/" . $arrProductos[$i]['idproducto'] . "/" . $ruta; ?>" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
                                         <?= $arrProductos[$i]['nombre'] ?>
                                     </a>
 

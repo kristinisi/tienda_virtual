@@ -9,6 +9,7 @@ class ProductosModel extends Mysql
     private $strPrecio;
     private $intStock;
     private $intStatus;
+    private $strRuta;
     private $strImagen;
 
     public function __construct()
@@ -35,13 +36,14 @@ class ProductosModel extends Mysql
     }
 
     //método que inserta un producto
-    public function insertProducto(string $nombre, string $descripcion, int $categoriaid, string $precio, int $stock, int $status)
+    public function insertProducto(string $nombre, string $descripcion, int $categoriaid, string $precio, int $stock, string $ruta, int $status)
     {
         $this->strNombre = $nombre;
         $this->strDescripcion = $descripcion;
         $this->intCategoriaId = $categoriaid;
         $this->strPrecio = $precio;
         $this->intStock = $stock;
+        $this->strRuta = $ruta;
         $this->intStatus = $status;
         $return = 0;
         //comprobamos si ya existe ya ese mismo producto con ese nombre
@@ -53,14 +55,16 @@ class ProductosModel extends Mysql
                                                     descripcion,
                                                     precio,
                                                     stock,
+                                                    ruta,
                                                     status) 
-                              VALUES(?,?,?,?,?,?)";
+                              VALUES(?,?,?,?,?,?,?)";
             $arrData = array(
                 $this->intCategoriaId,
                 $this->strNombre,
                 $this->strDescripcion,
                 $this->strPrecio,
                 $this->intStock,
+                $this->strRuta,
                 $this->intStatus
             );
             $request_insert = $this->insert($query_insert, $arrData);
@@ -72,7 +76,7 @@ class ProductosModel extends Mysql
     }
 
     //método para actualizar un producto
-    public function updateProducto(int $idproducto, string $nombre, string $descripcion, int $categoriaid, string $precio, int $stock, int $status)
+    public function updateProducto(int $idproducto, string $nombre, string $descripcion, int $categoriaid, string $precio, int $stock, string $ruta, int $status)
     {
         $this->intIdProducto = $idproducto;
         $this->strNombre = $nombre;
@@ -80,6 +84,7 @@ class ProductosModel extends Mysql
         $this->intCategoriaId = $categoriaid;
         $this->strPrecio = $precio;
         $this->intStock = $stock;
+        $this->strRuta = $ruta;
         $this->intStatus = $status;
         $return = 0;
         $sql = "SELECT * FROM producto WHERE nombre = '{$this->strNombre}' AND idproducto != $this->intIdProducto ";
@@ -91,6 +96,7 @@ class ProductosModel extends Mysql
                         descripcion=?,
                         precio=?,
                         stock=?,
+                        ruta=?,
                         status=? 
                     WHERE idproducto = $this->intIdProducto ";
             $arrData = array(
@@ -99,6 +105,7 @@ class ProductosModel extends Mysql
                 $this->strDescripcion,
                 $this->strPrecio,
                 $this->intStock,
+                $this->strRuta,
                 $this->intStatus
             );
 

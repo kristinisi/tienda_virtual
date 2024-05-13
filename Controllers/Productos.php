@@ -79,6 +79,9 @@ class Productos extends Controllers
                 $intStatus = intval($_POST['listStatus']);
                 $request_producto = "";
 
+                $ruta = strtolower(clear_cadena($strNombre)); //limpiar el nombre por si lleva tildes, función del helper
+                $ruta = str_replace(" ", "-", $ruta); //reemplazamos los espacios por guiones
+
                 //si el idproducto es 0, significa que debemos crear el producto
                 if ($idProducto == 0) {
                     $option = 1;
@@ -89,6 +92,7 @@ class Productos extends Controllers
                             $intCategoriaId,
                             $strPrecio,
                             $intStock,
+                            $ruta,
                             $intStatus
                         );
                     }
@@ -103,6 +107,7 @@ class Productos extends Controllers
                             $intCategoriaId,
                             $strPrecio,
                             $intStock,
+                            $ruta,
                             $intStatus
                         );
                     }

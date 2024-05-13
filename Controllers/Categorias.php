@@ -44,6 +44,9 @@ class Categorias extends Controllers
                 $strDescipcion = strClean($_POST['txtDescripcion']);
                 $intStatus = intval($_POST['listStatus']);
 
+                $ruta = strtolower(clear_cadena($strCategoria)); //limpiar el nombre por si lleva tildes, función del helper
+                $ruta = str_replace(" ", "-", $ruta); //reemplazamos los espacios por guiones
+
                 //almacenamos los datos de la imagen en variables
                 $foto            = $_FILES['foto']; //array general de la foto
                 $nombre_foto     = $foto['name'];
@@ -60,7 +63,7 @@ class Categorias extends Controllers
                 if ($intIdcategoria == 0) {
                     //Crear
                     if ($_SESSION['permisosMod']['w']) {
-                        $request_cateria = $this->model->inserCategoria($strCategoria, $strDescipcion, $imgPortada, $intStatus);
+                        $request_cateria = $this->model->inserCategoria($strCategoria, $strDescipcion, $imgPortada, $ruta, $intStatus);
                         $option = 1;  //para el mensaje de guardar o actualizar
                     }
                 } else {
@@ -73,7 +76,7 @@ class Categorias extends Controllers
                                 $imgPortada = $_POST['foto_actual'];
                             }
                         }
-                        $request_cateria = $this->model->updateCategoria($intIdcategoria, $strCategoria, $strDescipcion, $imgPortada, $intStatus);
+                        $request_cateria = $this->model->updateCategoria($intIdcategoria, $strCategoria, $strDescipcion, $imgPortada, $ruta, $intStatus);
                         $option = 2;
                     }
                 }

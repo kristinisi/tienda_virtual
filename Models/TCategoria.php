@@ -9,7 +9,7 @@ trait TCategoria
     {
         $this->con = new Mysql(); //creamos el objeto mysql
 
-        $sql = "SELECT idcategoria, nombre, descripcion, portada FROM categoria WHERE idcategoria IN ($categorias)"; //extraer varias categorias
+        $sql = "SELECT idcategoria, nombre, descripcion, portada, ruta FROM categoria WHERE idcategoria IN ($categorias)"; //extraer varias categorias
         $request = $this->con->select_all($sql);
         if (count($request) > 0) {
             for ($i = 0; $i < count($request); $i++) {
