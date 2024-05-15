@@ -1,4 +1,3 @@
-<!-- TRAIT CATEGORIA -->
 <?php
 require_once("Libraries/Core/Mysql.php"); //archivo que hace el crud en nuestra bbdd
 trait TCategoria
@@ -19,4 +18,3 @@ trait TCategoria
         return $request;
     }
 }
-?>

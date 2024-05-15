@@ -1,6 +1,5 @@
     <?php
     headerTienda($data); //la función está en el helper
-    getModal('modalCarrito', $data); //enviamos la funcinón del modal del carrito
 
     $arrSlider = $data['slider'];
     $arrBanner = $data['banner'];

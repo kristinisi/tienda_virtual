@@ -1,3 +1,13 @@
+<?php
+//para colocar la cantidad de productos que tenemos en el carrito
+$cantCarrito = 0;
+if (isset($_SESSION['arrCarrito']) and count($_SESSION['arrCarrito']) > 0) {
+    foreach ($_SESSION['arrCarrito'] as $product) {
+        $cantCarrito += $product['cantidad'];
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,6 +44,7 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="<?= media() ?>/tienda/css/util.css">
     <link rel="stylesheet" type="text/css" href="<?= media() ?>/tienda/css/main.css">
+    <link rel="stylesheet" type="text/css" href="<?= media() ?>/css/style.css">
     <!--===============================================================================================-->
 </head>
 
@@ -86,6 +97,10 @@
                             </li>
 
                             <li>
+                                <a href="<?= base_url(); ?>/carrito">Carrito</a>
+                            </li>
+
+                            <li>
                                 <a href="<?= base_url(); ?>/nosotros">Nosotros</a>
                             </li>
 
@@ -100,10 +115,13 @@
                         <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
                             <i class="zmdi zmdi-search"></i>
                         </div>
+                        <!-- Dentro de la página del carrito no vamos a mostrar el icono asique hacemos una comprobación -->
+                        <?php if ($data['page_name'] != "carrito") { ?>
 
-                        <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="2">
-                            <i class="zmdi zmdi-shopping-cart"></i>
-                        </div>
+                            <div class="cantCarrito icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="<?= $cantCarrito; ?>">
+                                <i class="zmdi zmdi-shopping-cart"></i>
+                            </div>
+                        <?php } ?>
                     </div>
                 </nav>
             </div>
@@ -118,13 +136,17 @@
 
             <!-- Icon header -->
             <div class="wrap-icon-header flex-w flex-r-m m-r-15">
-                <div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search">
+                <div class="cantCarrito icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search">
                     <i class="zmdi zmdi-search"></i>
                 </div>
 
-                <div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="2">
-                    <i class="zmdi zmdi-shopping-cart"></i>
-                </div>
+                <!-- Dentro de la página del carrito no vamos a mostrar el icono asique hacemos una comprobación -->
+                <?php if ($data['page_name'] != "carrito") { ?>
+
+                    <div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="<?= $cantCarrito; ?>">
+                        <i class="zmdi zmdi-shopping-cart"></i>
+                    </div>
+                <?php } ?>
             </div>
 
             <!-- Button show menu -->
@@ -169,6 +191,10 @@
                 </li>
 
                 <li>
+                    <a href="<?= base_url(); ?>/carrito">Carrito</a>
+                </li>
+
+                <li>
                     <a href="<?= base_url(); ?>/nosotros">Nosotros</a>
                 </li>
 
@@ -194,3 +220,24 @@
             </div>
         </div>
     </header>
+
+    <!-- Carrito MODAL -->
+    <div class="wrap-header-cart js-panel-cart">
+        <div class="s-full js-hide-cart"></div>
+
+        <div class="header-cart flex-col-l p-l-65 p-r-25">
+            <div class="header-cart-title flex-w flex-sb-m p-b-8">
+                <span class="mtext-103 cl2">
+                    Tu carrito
+                </span>
+
+                <div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
+                    <i class="zmdi zmdi-close"></i>
+                </div>
+            </div>
+
+            <div id="productosCarrito" class="header-cart-content flex-w js-pscroll">
+                <?php getModal('modalCarrito', $data); ?>
+            </div>
+        </div>
+    </div>

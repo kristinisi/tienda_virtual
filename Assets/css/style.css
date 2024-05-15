@@ -43,10 +43,6 @@ body {
   color: #fff;
 }
 
-.notBlcok {
-  display: none;
-}
-
 /*Estilos login*/
 #divLoading {
   position: fixed;

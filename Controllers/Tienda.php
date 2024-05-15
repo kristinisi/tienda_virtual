@@ -8,6 +8,7 @@ class Tienda extends Controllers
     public function __construct()
     {
         parent::__construct();
+        session_start();
     }
 
     //fución para la vista de la tienda
@@ -67,5 +68,158 @@ class Tienda extends Controllers
             $data['productos'] = $this->getProductosRandomT($infoProducto['categoriaid'], 4, "r"); //obtenemos los productos de la categoria(para mostrarlos como sugerencia) y necesitamos 4, y la r significa que vamos a sacar los productos de forma aleatoria
             $this->views->getView($this, "producto", $data);
         }
+    }
+
+    //función para añadir al carrito
+    public function addCarrito()
+    {
+        if ($_POST) {
+            // unset($_SESSION['arrCarrito']);
+            $arrCarrito = array(); //array para agregar cosas al carrito
+            $cantCarrito = 0; // la cantidad del carrito va a ser 0 por defecto
+            $idproducto = openssl_decrypt($_POST['id'], METHODENCRIPT, KEY); //Desencriptamos el id
+            $cantidad = $_POST['cant']; //guardamos en una variable la cantidad del producto
+
+            if (is_numeric($idproducto) and is_numeric($cantidad)) {
+                //si se cumple la condición los datos del producto
+                $arrInfoProducto = $this->getProductoIDT($idproducto); //extraemos el producto por medio del ID
+                if (!empty($arrInfoProducto)) { //si no está vaciio recuperamos los datos
+                    $arrProducto = array(
+                        'idproducto' => $idproducto,
+                        'producto' => $arrInfoProducto['nombre'],
+                        'cantidad' => $cantidad,
+                        'precio' => $arrInfoProducto['precio'],
+                        'imagen' => $arrInfoProducto['images'][0]['url_image']
+                    );
+                    //comprobamos si tenemos una variable de sesión iniciada
+                    if (isset($_SESSION['arrCarrito'])) {
+                        //si existe, va a vereficar si el prodcuto que estamos enviando ya existe
+                        $on = true; //para agregar al carrito 
+                        $arrCarrito = $_SESSION['arrCarrito'];
+
+                        //recorremos el array
+                        for ($i = 0; $i < count($arrCarrito); $i++) {
+                            if ($arrCarrito[$i]['idproducto'] == $idproducto) { //si el producto ya se encuentra en el carrito
+                                $arrCarrito[$i]['cantidad'] += $cantidad; //actualizamos la cantidad del producto
+                                $on = false; //para no agregar al carrito y solo actualizar la cantidad
+                            }
+                        }
+                        if ($on) {
+                            array_push($arrCarrito, $arrProducto); //si es on agregamos al carrito el producto
+                        }
+                        $_SESSION['arrCarrito'] = $arrCarrito;
+                    } else {
+                        array_push($arrCarrito, $arrProducto); //agregamos el elemento al array
+                        $_SESSION['arrCarrito'] = $arrCarrito; //creamos la variable de sesión con el primer producto
+                    }
+
+                    //ATENCION! PARA MOSTRAR PRODUCTOS EN EL MODAL
+                    // recorremos del array del carrito que sacará cada producto
+                    foreach ($_SESSION['arrCarrito'] as $pro) {
+                        //se va a mostrar la cantidad en el icono del carrito
+                        $cantCarrito += $pro['cantidad']; //se va sumando la cantidad de productos para sacar el total
+                    }
+                    $htmlCarrito = "";
+                    //extraemos el archivo - primero recibe la ruta del archivo y luego los datos(función en el helper)
+                    //archivo modal del carrito
+                    $htmlCarrito = getFile('Template/Modals/modalCarrito', $_SESSION['arrCarrito']);
+                    $arrResponse = array(
+                        "status" => true,
+                        "msg" => '¡Se agrego al carrito!',
+                        "cantCarrito" => $cantCarrito,
+                        "htmlCarrito" => $htmlCarrito
+                    );
+                } else {
+                    $arrResponse = array("status" => false, "msg" => 'Producto no existente.');
+                }
+            } else {
+                $arrResponse = array("status" => false, "msg" => 'Dato incorrecto.');
+            }
+            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE); //convertimos a formato json el array
+        }
+        die();
+    }
+
+    public function delCarrito()
+    {
+        if ($_POST) {
+            $arrCarrito = array(); //array de los elementos del carrito
+            $cantCarrito = 0;
+            $subtotal = 0;
+            $idproducto = openssl_decrypt($_POST['id'], METHODENCRIPT, KEY); //desencriptamos el id
+            $option = $_POST['option'];
+            if (is_numeric($idproducto) and ($option == 1 or $option == 2)) {
+                $arrCarrito = $_SESSION['arrCarrito'];
+                for ($i = 0; $i < count($arrCarrito); $i++) {
+                    //si el producto coincide con el id lo eliminamos del array
+                    if ($arrCarrito[$i]['idproducto'] == $idproducto) {
+                        unset($arrCarrito[$i]);
+                    }
+                }
+                sort($arrCarrito); //ordenamos el array
+                $_SESSION['arrCarrito'] = $arrCarrito;
+                foreach ($_SESSION['arrCarrito'] as $pro) {
+                    $cantCarrito += $pro['cantidad'];
+                    $subtotal += $pro['cantidad'] * $pro['precio'];
+                }
+
+                $htmlCarrito = "";
+                if ($option == 1) {
+                    $htmlCarrito = getFile('Template/Modals/modalCarrito', $_SESSION['arrCarrito']);
+                }
+                $arrResponse = array(
+                    "status" => true,
+                    "msg" => '¡Producto eliminado!',
+                    "cantCarrito" => $cantCarrito,
+                    "htmlCarrito" => $htmlCarrito,
+                    "subTotal" => formatMoney($subtotal) . SMONEY,
+                    "total" => formatMoney($subtotal + COSTOENVIO) . SMONEY
+                );
+            } else {
+                $arrResponse = array("status" => false, "msg" => 'Dato incorrecto.');
+            }
+            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE); //devolvemos la informacion al archivo de funciones
+        }
+        die();
+    }
+
+    public function updCarrito()
+    {
+        if ($_POST) {
+            $arrCarrito = array(); //donde vamos a tener todos los productos del carrito
+            $totalProducto = 0; //producto
+            $subtotal = 0; //del producto
+            $total = 0; //general
+            $idproducto = openssl_decrypt($_POST['id'], METHODENCRIPT, KEY); //desencriptamos el id del producto para poder trabajar con el 
+            $cantidad = intval($_POST['cantidad']);
+
+            if (is_numeric($idproducto) and $cantidad > 0) {
+                $arrCarrito = $_SESSION['arrCarrito'];
+                //recorremos el array
+                for ($i = 0; $i < count($arrCarrito); $i++) {
+                    if ($arrCarrito[$i]['idproducto'] == $idproducto) {
+                        $arrCarrito[$i]['cantidad'] = $cantidad;
+                        $totalProducto = $arrCarrito[$i]['precio'] * $cantidad; //sacamos el total de ese producto
+                        break;
+                    }
+                }
+                $_SESSION['arrCarrito'] = $arrCarrito; //igualamos la sesion al array que ya tiene los datos actualizados
+                //sacamos el subtotal (que será el total de todos los produtctos)    
+                foreach ($_SESSION['arrCarrito'] as $pro) {
+                    $subtotal += $pro['cantidad'] * $pro['precio'];
+                }
+                $arrResponse = array(
+                    "status" => true,
+                    "msg" => '¡Producto actualizado!',
+                    "totalProducto" => formatMoney($totalProducto) . SMONEY,
+                    "subTotal" => formatMoney($subtotal) . SMONEY,
+                    "total" => formatMoney($subtotal + COSTOENVIO) . SMONEY
+                );
+            } else {
+                $arrResponse = array("status" => false, "msg" => 'Dato incorrecto.');
+            }
+            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        }
+        die();
     }
 }

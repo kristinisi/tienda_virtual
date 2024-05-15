@@ -20,8 +20,15 @@ const SPM = ".";
 //Simbolo de la moneda
 const SMONEY = "€";
 
-//variable para las categorias del slider
+//constante para las categorias del slider
 const CAT_SLIDER = "1,2,3";
 
-//variable para las categorias del banner
+//constante para las categorias del banner
 const CAT_BANNER = "1,2,3";
+
+//Datos para Encriptar / Desencriptar
+const KEY = 'cristina';
+const METHODENCRIPT = "AES-128-ECB";
+
+//constante para el precio de envio
+const COSTOENVIO = 5;

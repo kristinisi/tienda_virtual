@@ -55,6 +55,15 @@ function getModal(string $nameModal, $data)
     require_once($view_modal);
 }
 
+//obtener un archivo
+function getFile(string $url, $data)
+{
+    // ob_start();
+    require_once("Views/{$url}.php"); //requerimos el modal del carrito
+    $file = ob_get_clean(); //esta función lo que hace es levantar el archivo para tenerlo en buffer y así poder utilizar variables que se envían como parámetro($data)
+    return $file; //retorna el archivo
+}
+
 function getPermisos(int $idmodulo)
 {
     require_once("Models/PermisosModel.php"); //requerimos el model permisos

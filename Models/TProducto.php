@@ -1,4 +1,3 @@
-<!-- TRAIT CATEGORIA -->
 <?php
 require_once("Libraries/Core/Mysql.php"); //archivo que hace el crud en nuestra bbdd
 trait TProducto
@@ -115,6 +114,7 @@ trait TProducto
                         p.descripcion,
                         p.categoriaid,
                         c.nombre as categoria,
+                        c.ruta as ruta_categoria, 
                         p.precio,
                         p.stock,
                         p.ruta,
@@ -147,6 +147,7 @@ trait TProducto
         return $request;
     }
 
+    //sacar productos relacionados con la categoria de manera aleatoria
     public function getProductosRandomT(int $idcategoria, int $cant, string $option)
     {
         $this->intIdCategoria = $idcategoria;
@@ -198,5 +199,41 @@ trait TProducto
 
         return $request;
     }
+
+    //método que retorna un producto mediante el id
+    public function getProductoIDT(int $idproducto)
+    {
+        $this->con = new Mysql();
+        $this->intIdProducto = $idproducto;
+        $sql = "SELECT p.idproducto,
+						p.nombre,
+						p.descripcion,
+						p.categoriaid,
+						c.nombre as categoria,
+						p.precio,
+						p.ruta,
+						p.stock
+				FROM producto p 
+				INNER JOIN categoria c
+				ON p.categoriaid = c.idcategoria
+				WHERE p.idproducto = '{$this->intIdProducto}' ";
+        $request = $this->con->select($sql);
+
+        if (!empty($request)) {
+            $intIdProducto = $request['idproducto'];
+            $sqlImg = "SELECT img
+							FROM imagen
+							WHERE productoid = $intIdProducto";
+            $arrImg = $this->con->select_all($sqlImg);
+            if (count($arrImg) > 0) {
+                for ($i = 0; $i < count($arrImg); $i++) {
+                    $arrImg[$i]['url_image'] = media() . '/images/uploads/' . $arrImg[$i]['img'];
+                }
+            } else {
+                $arrImg[0]['url_image'] = media() . '/images/uploads/no_producto.png';
+            }
+            $request['images'] = $arrImg;
+        }
+        return $request;
+    }
 }
-?>
