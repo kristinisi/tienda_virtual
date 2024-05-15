@@ -58,9 +58,9 @@ function getModal(string $nameModal, $data)
 //obtener un archivo
 function getFile(string $url, $data)
 {
-    // ob_start();
+    ob_start(); //significa que vamos a almacenar en buffer el archivo de la linea de abajo para poder utilizarlo
     require_once("Views/{$url}.php"); //requerimos el modal del carrito
-    $file = ob_get_clean(); //esta función lo que hace es levantar el archivo para tenerlo en buffer y así poder utilizar variables que se envían como parámetro($data)
+    $file = ob_get_clean(); //esta función lo que hace es levantar el archivo para tenerlo en buffer y así poder utilizar variables que se envían como parámetro($data) y luego lo limpia
     return $file; //retorna el archivo
 }
 

@@ -170,7 +170,6 @@ if (document.querySelector(".num-product")) {
 
 //función para borrar un producto del carrito
 function fntdelItem(element) {
-  console.log(element);
   //Option 1 = Modal
   //Option 2 = Vista Carrito
   let option = element.getAttribute("op"); //recogemos el option
@@ -192,21 +191,11 @@ function fntdelItem(element) {
         let objData = JSON.parse(request.responseText);
 
         if (objData.status) {
-          //colocamos el html del modal del carrito en el id del header_tienda productoscarrito
-          document.querySelector("#productosCarrito").innerHTML =
-            objData.htmlCarrito;
-          document
-            .querySelector(".cantCarrito")
-            .setAttribute("data-notify", objData.cantCarrito);
-        } else {
-          swal("", objData.msg, "error");
-        }
-
-        if (objData.status) {
           if (option == 1) {
             //eliminamos desde el modal carrito
             document.querySelector("#productosCarrito").innerHTML =
               objData.htmlCarrito;
+            //actualizar la cantidad  de productos del icono del carrito
             const cants = document.querySelectorAll(".cantCarrito");
             cants.forEach((element) => {
               element.setAttribute("data-notify", objData.cantCarrito);
