@@ -19,29 +19,32 @@ class Carrito extends Controllers
         $data['page_name'] = "carrito";
         $this->views->getView($this, "carrito", $data);
     }
-    // public function procesarpago()
+
+    public function procesarpago()
+    {
+        //evitar mostrar el procesar pago si no tenemos nada en el carrito
+        if (empty($_SESSION['arrCarrito'])) {
+            header("Location: " . base_url());
+            die();
+        }
+        // if (isset($_SESSION['login'])) {
+        //     $this->setDetalleTemp();
+        // }
+        $data['page_tag'] = 'HANAKO';
+        $data['page_title'] = 'Procesar Pago';
+        $data['page_name'] = "procesarpago";
+        // $data['tiposPago'] = $this->getTiposPagoT();
+        $this->views->getView($this, "procesarpago", $data);
+    }
+
+    // public function setDetalleTemp()
     // {
-    // 	if(empty($_SESSION['arrCarrito'])){ 
-    // 		header("Location: ".base_url());
-    // 		die();
-    // 	}
-    // 	if(isset($_SESSION['login'])){
-    // 		$this->setDetalleTemp();
-    // 	}
-    // 	$data['page_tag'] = NOMBRE_EMPESA.' - Procesar Pago';
-    // 	$data['page_title'] = 'Procesar Pago';
-    // 	$data['page_name'] = "procesarpago";
-    // 	$data['tiposPago'] = $this->getTiposPagoT();
-    // 	$this->views->getView($this,"procesarpago",$data); 
+    //     $sid = session_id();
+    //     $arrPedido = array(
+    //         'idcliente' => $_SESSION['idUser'],
+    //         'idtransaccion' => $sid,
+    //         'productos' => $_SESSION['arrCarrito']
+    //     );
+    //     $this->insertDetalleTemp($arrPedido);
     // }
-
-    // public function setDetalleTemp(){
-    // 	$sid = session_id();
-    // 	$arrPedido = array('idcliente' => $_SESSION['idUser'],
-    // 						'idtransaccion' =>$sid,
-    // 						'productos' => $_SESSION['arrCarrito']
-    // 					);
-    // 	$this->insertDetalleTemp($arrPedido);
-    // }
-
 }
