@@ -22,7 +22,7 @@ $total = 0;
 if (isset($_SESSION['arrCarrito']) and count($_SESSION['arrCarrito']) > 0) {
 ?>
     <!-- Carrito -->
-    <form class="bg0 p-t-75 p-b-85" method="post" action="<?= base_url() ?>/carrito/procesarpago">
+    <form class="bg0 p-t-75 p-b-85">
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
@@ -123,12 +123,9 @@ if (isset($_SESSION['arrCarrito']) and count($_SESSION['arrCarrito']) > 0) {
                                 </span>
                             </div>
                         </div>
-                        <button type="submit" id="btnComprar" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
+                        <a href="<?= base_url() ?>/carrito/procesarpago" id="btnComprar" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
                             Procesar pago
-                        </button>
-                        <!-- <a href="<?= base_url() ?>/carrito/procesarpago" id="btnComprar" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
-                            Procesar pago
-                        </a> -->
+                        </a>
                     </div>
                 </div>
             </div>

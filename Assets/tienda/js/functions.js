@@ -261,3 +261,60 @@ function fntUpdateCant(pro, cant) {
   }
   return false;
 }
+
+if (document.querySelector("#formRegister")) {
+  let formRegister = document.querySelector("#formRegister");
+  formRegister.onsubmit = function (e) {
+    e.preventDefault();
+
+    let strIdentificacion = document.querySelector("#txtIdentificacion").value;
+    let strNombre = document.querySelector("#txtNombre").value;
+    let strApellido = document.querySelector("#txtApellido").value;
+    let intTelefono = document.querySelector("#txtTelefono").value;
+    let strEmail = document.querySelector("#txtEmailCliente").value;
+    let strPassword = document.querySelector("#txtPassword").value;
+
+    if (
+      strIdentificacion == "" ||
+      strNombre == "" ||
+      strApellido == "" ||
+      intTelefono == "" ||
+      strEmail == "" ||
+      strPassword == ""
+    ) {
+      swal("Atención", "Todos los campos son obligatorios.", "error");
+      return false;
+    }
+
+    //verificamos los campos del formulario
+    let elementsValid = document.getElementsByClassName("valid");
+    for (let i = 0; i < elementsValid.length; i++) {
+      if (elementsValid[i].classList.contains("is-invalid")) {
+        swal("Atención", "Por favor verifique los campos en rojo.", "error");
+        return false;
+      }
+    }
+    divLoading.style.display = "flex";
+    let request = window.XMLHttpRequest
+      ? new XMLHttpRequest()
+      : new ActiveXObject("Microsoft.XMLHTTP");
+    let ajaxUrl = base_url + "/Tienda/registro"; //tenemos la url en el controlador tienda
+    let formData = new FormData(formRegister);
+    request.open("POST", ajaxUrl, true);
+    request.send(formData);
+
+    request.onreadystatechange = function () {
+      if (request.readyState == 4 && request.status == 200) {
+        let objData = JSON.parse(request.responseText);
+        if (objData.status) {
+          //hacemos que se recargue de nuevo la página para que nos de la vista para la dirección de envío y podamos hacer el pago
+          window.location.reload(false);
+        } else {
+          swal("Error", objData.msg, "error");
+        }
+      }
+      divLoading.style.display = "none";
+      return false;
+    };
+  };
+}

@@ -33,7 +33,7 @@ $total = $subtotal + COSTOENVIO;
                 <div>
                     <!-- Si existe la variable de sesión, mostramos la dirección de envío -->
                     <?php
-                    if (!isset($_SESSION['login'])) {
+                    if (isset($_SESSION['login'])) {
                     ?>
                         <div>
                             <label for="tipopago">Dirección de envío</label>
@@ -75,22 +75,34 @@ $total = $subtotal + COSTOENVIO;
                                 <form id="formRegister">
                                     <div class="row">
                                         <div class="col col-md-6 form-group">
-                                            <label for="txtNombre">Nombres</label>
-                                            <input type="text" class="form-control valid validText" id="txtNombre" name="txtNombre" required="">
+                                            <label for="txtIdentificacion">Identificación</label>
+                                            <input type="text" class="form-control valid validText" id="txtIdentificacion" name="txtIdentificacion" required>
                                         </div>
                                         <div class="col col-md-6 form-group">
-                                            <label for="txtApellido">Apellidos</label>
-                                            <input type="text" class="form-control valid validText" id="txtApellido" name="txtApellido" required="">
+                                            <label for="txtNombre">Nombre</label>
+                                            <input type="text" class="form-control valid validText" id="txtNombre" name="txtNombre" required>
                                         </div>
+
                                     </div>
                                     <div class="row">
                                         <div class="col col-md-6 form-group">
-                                            <label for="txtTelefono">Teléfono</label>
-                                            <input type="text" class="form-control valid validNumber" id="txtTelefono" name="txtTelefono" required="" onkeypress="return controlTag(event);">
+                                            <label for="txtApellido">Apellidos</label>
+                                            <input type="text" class="form-control valid validText" id="txtApellido" name="txtApellido" required>
                                         </div>
                                         <div class="col col-md-6 form-group">
+                                            <label for="txtTelefono">Teléfono</label>
+                                            <input type="text" class="form-control valid validNumber" id="txtTelefono" name="txtTelefono" required onkeypress="return controlTag(event);">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="col col-md-6 form-group">
                                             <label for="txtEmailCliente">Email</label>
-                                            <input type="email" class="form-control valid validEmail" id="txtEmailCliente" name="txtEmailCliente" required="">
+                                            <input type="email" class="form-control valid validEmail" id="txtEmailCliente" name="txtEmailCliente" required>
+                                        </div>
+                                        <div class="col col-md-6 form-group">
+                                            <label for="txtPassword">Contraseña</label>
+                                            <input type="password" class="form-control" id="txtPassword" name="txtPassword">
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-primary">Regístrate</button>
@@ -147,7 +159,7 @@ $total = $subtotal + COSTOENVIO;
                     </div>
                 </div>
                 <?php
-                if (!isset($_SESSION['login'])) {
+                if (isset($_SESSION['login'])) {
                 ?>
                     <button type="submit" id="btnComprar" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
                         Pagar

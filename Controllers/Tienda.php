@@ -222,4 +222,60 @@ class Tienda extends Controllers
         }
         die();
     }
+
+    //Función para el registro de un cliente desde la vista tienda
+    public function registro()
+    {
+        error_reporting(0);
+        if ($_POST) {
+            if (empty($_POST['txtIdentificacion']) || ($_POST['txtNombre']) || empty($_POST['txtApellido']) || empty($_POST['txtTelefono']) || empty($_POST['txtEmailCliente']) || empty($_POST['txtPassword'])) {
+                $arrResponse = array("status" => false, "msg" => 'Datos incorrectos.');
+            } else {
+                $strIdentificacion = strClean($_POST['txtIdentificacion']);
+                $strNombre = ucwords(strClean($_POST['txtNombre']));
+                $strApellido = ucwords(strClean($_POST['txtApellido']));
+                $intTelefono = intval(strClean($_POST['txtTelefono']));
+                $strEmail = strtolower(strClean($_POST['txtEmailCliente']));
+                $strPassword = $_POST['txtPassword'];
+                $intTipoId = 2; //colocamos 2 porque el rol del tipo usuario es el 2
+                $request_user = "";
+
+                //encriptamos la constraseña
+                $strPasswordEncript = hash("SHA256", $strPassword);
+                //vmos a enviar al trait cliente los datos para hacer la inserción
+                $request_user = $this->insertCliente(
+                    $strIdentificacion,
+                    $strNombre,
+                    $strApellido,
+                    $intTelefono,
+                    $strEmail,
+                    $strPasswordEncript,
+                    $intTipoId
+                );
+
+                //verificamos si el usuario se guardo correctamente en la base de datos
+                if ($request_user > 0) {
+                    $arrResponse = array('status' => true, 'msg' => 'Datos guardados correctamente.');
+                    $nombreUsuario = $strNombre . ' ' . $strApellido;
+                    // $dataUsuario = array(
+                    //     'nombreUsuario' => $nombreUsuario,
+                    //     'email' => $strEmail,
+                    //     'password' => $strPassword,
+                    //     'asunto' => 'Bienvenido a tu tienda en línea'
+                    // );
+                    $_SESSION['idUser'] = $request_user;
+                    $_SESSION['login'] = true;
+                    $this->login->sessionLogin($request_user);
+                    //sendEmail($dataUsuario,'email_bienvenida');
+
+                } else if ($request_user == 'exist') {
+                    $arrResponse = array('status' => false, 'msg' => '¡Atención! el email ya existe, ingrese otro.');
+                } else {
+                    $arrResponse = array("status" => false, "msg" => 'No es posible almacenar los datos.');
+                }
+            }
+            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        }
+        die();
+    }
 }

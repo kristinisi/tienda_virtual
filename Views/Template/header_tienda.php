@@ -50,6 +50,13 @@ if (isset($_SESSION['arrCarrito']) and count($_SESSION['arrCarrito']) > 0) {
 
 <body class="animsition">
 
+    <!-- Metemos aquí el loading para que podamos aplicarlo en las vistas que queramos con simplemente activarlo -->
+    <div id="divLoading">
+        <div>
+            <img src="<?= media(); ?>/images/loading.svg" alt="Loading">
+        </div>
+    </div>
+
     <!-- Header -->
     <header>
         <!-- Header desktop -->

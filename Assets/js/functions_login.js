@@ -38,7 +38,9 @@ document.addEventListener(
               let objData = JSON.parse(request.responseText);
               if (objData.status) {
                 //si el status es true (hizo login correctamente)
-                window.location = base_url + "/dashboard"; //redireccionamos a la parte administrativa que es el dashboard
+                // window.location = base_url + "/dashboard"; //redireccionamos a la parte administrativa que es el dashboard ----------------------
+                //la linea siguiente la hacemos para direferencias las páginas en la que entras si es desde la tienda o desde el login
+                window.location.reload(false); //esto es para que recargue la página actual utilizando el caché del navegador si está disponible
               } else {
                 swal("Atención", objData.msg, "error"); //salta una alerta
                 document.querySelector("#txtPassword").value = ""; //limpiamos el campo contraseña
