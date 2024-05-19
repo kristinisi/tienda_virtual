@@ -16,7 +16,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="txtIdentificacion">Identificación</label>
-                            <input type="text" class="form-control" id="txtIdentificacion" name="txtIdentificacion" required="">
+                            <input type="text" class="form-control" id="txtIdentificacion" name="txtIdentificacion" required>
                             <div class="invalid-feedback">
                                 Por favor, ingrese una identificacion válida.
                             </div>
@@ -26,14 +26,14 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="txtNombre">Nombre</label>
-                            <input type="text" class="form-control valid validText" id="txtNombre" name="txtNombre" required="">
+                            <input type="text" class="form-control valid validText" id="txtNombre" name="txtNombre" required>
                             <div class="invalid-feedback">
                                 Por favor, ingrese un nombre válido.
                             </div>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="txtApellido">Apellidos</label>
-                            <input type="text" class="form-control valid validText" id="txtApellido" name="txtApellido" required="">
+                            <input type="text" class="form-control valid validText" id="txtApellido" name="txtApellido" required>
                             <div class="invalid-feedback">
                                 Por favor, ingrese un apellido válido.
                             </div>

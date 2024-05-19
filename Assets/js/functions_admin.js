@@ -43,6 +43,15 @@ function testText(txtString) {
   }
 }
 
+function testEntero(intCant) {
+  var intCantidad = new RegExp(/^([0-9])*$/);
+  if (intCantidad.test(intCant)) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 function testNumero(num) {
   let numero = new RegExp(/^([0-9])*$/);
   if (numero.test(num)) {

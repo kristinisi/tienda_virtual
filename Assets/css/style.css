@@ -215,3 +215,14 @@ body {
   width: 150px;
   margin: 10px;
 }
+
+.custom-select.is-valid ~ .invalid-feedback,
+.custom-select.is-valid ~ .invalid-tooltip,
+.form-control.is-valid ~ .invalid-feedback,
+.form-control.is-valid ~ .invalid-tooltip,
+.was-validated .custom-select:valid ~ .invalid-feedback,
+.was-validated .custom-select:valid ~ .invalid-tooltip,
+.was-validated .form-control:valid ~ .invalid-feedback,
+.was-validated .form-control:valid ~ .invalid-tooltip {
+  display: none !important;
+}

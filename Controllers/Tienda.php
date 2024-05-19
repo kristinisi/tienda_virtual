@@ -1,14 +1,19 @@
 <?php
 require_once("Models/TCategoria.php"); //para poder usar los métodos de TCategoria
 require_once("Models/TProducto.php"); //para poder usar los métodos de TProducto
+require_once("Models/TCliente.php"); //para poder usar los métodos de TCliente
+require_once("Models/TPedido.php"); //para poder usar los métodos de TPedido
+require_once("Models/LoginModel.php"); //para poder usar los métodos de LoginModel
 class Tienda extends Controllers
 {
     //para hacer uso de los trait debemos colocar:
-    use TCategoria, TProducto;
+    use TCategoria, TProducto, TCliente, TPedido;
+    public $login;
     public function __construct()
     {
         parent::__construct();
         session_start();
+        $this->login = new LoginModel();
     }
 
     //fución para la vista de la tienda
@@ -228,7 +233,8 @@ class Tienda extends Controllers
     {
         error_reporting(0);
         if ($_POST) {
-            if (empty($_POST['txtIdentificacion']) || ($_POST['txtNombre']) || empty($_POST['txtApellido']) || empty($_POST['txtTelefono']) || empty($_POST['txtEmailCliente']) || empty($_POST['txtPassword'])) {
+            // dep($_POST);
+            if (empty($_POST['txtIdentificacion']) || empty($_POST['txtNombre']) || empty($_POST['txtApellido']) || empty($_POST['txtTelefono']) || empty($_POST['txtEmailCliente']) || empty($_POST['txtPasswordCliente'])) {
                 $arrResponse = array("status" => false, "msg" => 'Datos incorrectos.');
             } else {
                 $strIdentificacion = strClean($_POST['txtIdentificacion']);
@@ -236,7 +242,7 @@ class Tienda extends Controllers
                 $strApellido = ucwords(strClean($_POST['txtApellido']));
                 $intTelefono = intval(strClean($_POST['txtTelefono']));
                 $strEmail = strtolower(strClean($_POST['txtEmailCliente']));
-                $strPassword = $_POST['txtPassword'];
+                $strPassword = $_POST['txtPasswordCliente'];
                 $intTipoId = 2; //colocamos 2 porque el rol del tipo usuario es el 2
                 $request_user = "";
 
@@ -253,26 +259,67 @@ class Tienda extends Controllers
                     $intTipoId
                 );
 
+                // echo $request_user;
+
                 //verificamos si el usuario se guardo correctamente en la base de datos
-                if ($request_user > 0) {
+                if ($request_user == 'exist') {
+                    $arrResponse = array('status' => false, 'msg' => '¡Atención! el email ya existe, ingrese otro.');
+                } else if ($request_user > 0) {
                     $arrResponse = array('status' => true, 'msg' => 'Datos guardados correctamente.');
-                    $nombreUsuario = $strNombre . ' ' . $strApellido;
-                    // $dataUsuario = array(
-                    //     'nombreUsuario' => $nombreUsuario,
-                    //     'email' => $strEmail,
-                    //     'password' => $strPassword,
-                    //     'asunto' => 'Bienvenido a tu tienda en línea'
-                    // );
                     $_SESSION['idUser'] = $request_user;
                     $_SESSION['login'] = true;
-                    $this->login->sessionLogin($request_user);
-                    //sendEmail($dataUsuario,'email_bienvenida');
+                    $this->login->sessionLogin($request_user); //enviamos como parámetro el id del cliente y crear la variable de sesión  
 
-                } else if ($request_user == 'exist') {
-                    $arrResponse = array('status' => false, 'msg' => '¡Atención! el email ya existe, ingrese otro.');
                 } else {
                     $arrResponse = array("status" => false, "msg" => 'No es posible almacenar los datos.');
                 }
+            }
+            // dep($arrResponse);
+            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        }
+        die();
+    }
+    //Función para el registro de de un pedido
+    public function registroPedido()
+    {
+        error_reporting(0);
+        if ($_POST) {
+            $subtotal = 0;
+            //sacamos el subtotal (que será el total de todos los produtctos)    
+            foreach ($_SESSION['arrCarrito'] as $pro) {
+                $subtotal += $pro['cantidad'] * $pro['precio'];
+            }
+            $total = $subtotal + COSTOENVIO;
+
+            $intIdUsuario = intval($_SESSION['idUser']);
+            $strMonto = $total;
+            $strDireccion = strClean($_POST['txtDireccion'] . " " . $_POST['txtCiudad']);
+
+            $request = $this->insertPedido(
+                $intIdUsuario,
+                $strMonto,
+                $strDireccion
+            );
+
+            //verificamos si el usuario se guardo correctamente en la base de datos
+            if ($request > 0) {
+
+                //hacemos el detalle del pedido
+                foreach ($_SESSION['arrCarrito'] as $pro) {
+                    $productoId = $pro['idproducto'];
+                    $precio = $pro['precio'];
+                    $cantidad = $pro['cantidad'];
+                    $this->insertDetPedido(
+                        $request,
+                        $productoId,
+                        $precio,
+                        $cantidad
+                    );
+                }
+
+                $arrResponse = array('status' => true, 'msg' => 'Pedido hecho correctamente.');
+            } else {
+                $arrResponse = array("status" => false, "msg" => 'No es posible hacer el pedido.');
             }
             echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         }

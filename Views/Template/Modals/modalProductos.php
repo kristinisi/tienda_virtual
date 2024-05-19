@@ -129,7 +129,7 @@
                 <table class="table table-bordered">
                     <tbody>
                         <tr>
-                            <td>Nombres:</td>
+                            <td>Nombre:</td>
                             <td id="celNombre"></td>
                         </tr>
                         <tr>

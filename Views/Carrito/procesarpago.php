@@ -1,6 +1,5 @@
 <?php
 headerTienda($data);
-
 $subtotal = 0;
 $total = 0;
 
@@ -35,81 +34,114 @@ $total = $subtotal + COSTOENVIO;
                     <?php
                     if (isset($_SESSION['login'])) {
                     ?>
-                        <div>
-                            <label for="tipopago">Dirección de envío</label>
-                            <div class="bor8 bg0 m-b-12">
-                                <input id="txtDireccion" class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="state" placeholder="Dirección de envío">
+                        <form id="formPedido" class="needs-validation" novalidate>
+                            <div>
+                                <label for="tipopago">Dirección de envío</label>
+                                <div class="bor8 bg0 m-b-12">
+                                    <input id="txtDireccion" class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="direccion" placeholder="Dirección de envío" required>
+                                </div>
+                                <div class="bor8 bg0 m-b-22">
+                                    <input id="txtCiudad" class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="ciudad" placeholder="Ciudad / Estado" required>
+                                </div>
+                                <br><br>
+                                <label>Datos de la tarjeta</label>
+                                <div class=" bg0 m-b-12">
+                                    <label for="tarjeta">Número de Tarjeta: </label>
+                                    <input id="tarjeta" class="form-control" type="text" pattern="[0-9]{4}[ ][0-9]{4}[ ][0-9]{4}[ ][0-9]{4}" maxlength="19" minlength="19" placeholder="XXXX XXXX XXXX XXXX" required>
+                                    <div class="invalid-feedback">El número de tarjeta debe de ser 16 número con un espacio entre medias cada 4 números.</div>
+                                </div>
+                                <div class="bg0 m-b-12">
+                                    <label for="caducidad">Caducidad: </label>
+                                    <input id="caducidad" class="form-control" type="text" pattern="(0[1-9]|1[0-2])\/(2[2-9]|[3-9][0-9])" maxlength="5" minlength="5" required placeholder="mm/yy">
+                                    <div class="invalid-feedback">La caducidad debe ser mes/año</div>
+                                </div>
+                                <div class="bg0 m-b-12">
+                                    <label for="seguridad">Código de seguridad/CVV2: </label>
+                                    <input type="text" id="seguridad" class="form-control" pattern="[0-9]{3}" maxlength="3" minlength="3" required>
+                                    <div class="invalid-feedback">El número de seguridad son 3 números</div>
+                                </div>
+                                <div class="bg0 m-b-12">
+                                    <label for="titular">Titular de la Tarjeta: </label>
+                                    <input type="text" id="titular" class="form-control" pattern="[A-Za-z]+(\s[A-Za-z]+)*" required>
+                                    <div class="invalid-feedback">Debe introducir el titular de la tarjeta</div>
+                                </div>
                             </div>
-                            <div class="bor8 bg0 m-b-22">
-                                <input id="txtCiudad" class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="postcode" placeholder="Ciudad / Estado">
-                            </div>
-                        </div>
-                        <!-- Sino mostramos el formulario para iniciar sesión -->
-                    <?php } else { ?>
-                        <ul class="nav nav-tabs" id="myTab" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#login" role="tab" aria-controls="home" aria-selected="true">Iniciar Sesión</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#registro" role="tab" aria-controls="profile" aria-selected="false">Crear cuenta</a>
-                            </li>
-                        </ul>
-                        <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="home-tab">
-                                <br>
-                                <form id="formLogin">
-                                    <div class="form-group">
-                                        <label for="txtEmail">Usuario</label>
-                                        <input type="email" class="form-control" id="txtEmail" name="txtEmail">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="txtPassword">Contraseña</label>
-                                        <input type="password" class="form-control" id="txtPassword" name="txtPassword">
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Iniciar sesión</button>
-                                </form>
 
-                            </div>
-                            <div class="tab-pane fade" id="registro" role="tabpanel" aria-labelledby="profile-tab">
-                                <br>
-                                <form id="formRegister">
-                                    <div class="row">
-                                        <div class="col col-md-6 form-group">
-                                            <label for="txtIdentificacion">Identificación</label>
-                                            <input type="text" class="form-control valid validText" id="txtIdentificacion" name="txtIdentificacion" required>
+                            <!-- Sino mostramos el formulario para iniciar sesión -->
+                        <?php } else { ?>
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#login" role="tab" aria-controls="home" aria-selected="true">Iniciar Sesión</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#registro" role="tab" aria-controls="profile" aria-selected="false">Crear cuenta</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="home-tab">
+                                    <br>
+                                    <form id="formLogin" class=" needs-validation" novalidate>
+                                        <div class="form-group">
+                                            <label for="txtEmail">Usuario</label>
+                                            <input type="email" class="form-control" id="txtEmail" name="txtEmail" required>
+                                            <div class="invalid-feedback">
+                                                Por favor, ingrese un correo válido.
+                                            </div>
                                         </div>
-                                        <div class="col col-md-6 form-group">
-                                            <label for="txtNombre">Nombre</label>
-                                            <input type="text" class="form-control valid validText" id="txtNombre" name="txtNombre" required>
-                                        </div>
-
-                                    </div>
-                                    <div class="row">
-                                        <div class="col col-md-6 form-group">
-                                            <label for="txtApellido">Apellidos</label>
-                                            <input type="text" class="form-control valid validText" id="txtApellido" name="txtApellido" required>
-                                        </div>
-                                        <div class="col col-md-6 form-group">
-                                            <label for="txtTelefono">Teléfono</label>
-                                            <input type="text" class="form-control valid validNumber" id="txtTelefono" name="txtTelefono" required onkeypress="return controlTag(event);">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-
-                                        <div class="col col-md-6 form-group">
-                                            <label for="txtEmailCliente">Email</label>
-                                            <input type="email" class="form-control valid validEmail" id="txtEmailCliente" name="txtEmailCliente" required>
-                                        </div>
-                                        <div class="col col-md-6 form-group">
+                                        <div class="form-group">
                                             <label for="txtPassword">Contraseña</label>
-                                            <input type="password" class="form-control" id="txtPassword" name="txtPassword">
+                                            <input type="password" class="form-control" id="txtPassword" name="txtPassword" required>
+                                            <div class="invalid-feedback">
+                                                Por favor, ingrese una contraseña válida.
+                                            </div>
                                         </div>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Regístrate</button>
-                                </form>
+                                        <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+                                    </form>
+
+                                </div>
+                                <div class="tab-pane fade" id="registro" role="tabpanel" aria-labelledby="profile-tab">
+                                    <br>
+                                    <form id="formRegister" class="needs-validation" novalidate>
+                                        <div class="row">
+                                            <div class="col col-md-6 form-group">
+                                                <label for="txtIdentificacion">Identificación</label>
+                                                <input type="text" class="form-control" id="txtIdentificacion" name="txtIdentificacion" required>
+                                            </div>
+                                            <div class="col col-md-6 form-group">
+                                                <label for="txtNombre">Nombre</label>
+                                                <input type="text" class="form-control valid validText" id="txtNombre" name="txtNombre" required>
+
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col col-md-6 form-group">
+                                                <label for="txtApellido">Apellidos</label>
+                                                <input type="text" class="form-control valid validText" id="txtApellido" name="txtApellido" required>
+
+                                            </div>
+                                            <div class="col col-md-6 form-group">
+                                                <label for="txtTelefono">Teléfono</label>
+                                                <input type="text" class="form-control valid validNumber" id="txtTelefono" name="txtTelefono" required onkeypress="return controlTag(event);">
+
+                                            </div>
+                                        </div>
+                                        <div class="row">
+
+                                            <div class="col col-md-6 form-group">
+                                                <label for="txtEmailCliente">Email</label>
+                                                <input type="email" class="form-control valid validEmail" id="txtEmailCliente" name="txtEmailCliente" required>
+
+                                            </div>
+                                            <div class="col col-md-6 form-group">
+                                                <label for="txtPassword">Contraseña</label>
+                                                <input type="password" class="form-control" id="txtPasswordCliente" name="txtPasswordCliente" required>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Regístrate</button>
+                                </div>
                             </div>
-                        </div>
-                    <?php } ?>
+                        <?php } ?>
                 </div>
             </div>
         </div>
@@ -161,9 +193,10 @@ $total = $subtotal + COSTOENVIO;
                 <?php
                 if (isset($_SESSION['login'])) {
                 ?>
-                    <button type="submit" id="btnComprar" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
+                    <button type="submit" id="btnComprar" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer notBlock" data-toggle="modal" data-target="#modalTarjeta">
                         Pagar
                     </button>
+                    </form>
                 <?php } ?>
             </div>
         </div>

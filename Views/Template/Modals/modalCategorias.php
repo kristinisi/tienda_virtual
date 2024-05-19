@@ -27,7 +27,7 @@
                                 <label class="control-label">Descripción <span class="required">*</span></label>
                                 <textarea class="form-control" id="txtDescripcion" name="txtDescripcion" rows="2" placeholder="Descripción Categoría" required></textarea>
                                 <div class="invalid-feedback">
-                                    Por favor, ingrese unA DESCRIPCIÓN válidA.
+                                    Por favor, ingrese una descripción válida.
                                 </div>
                             </div>
                             <div class="form-group">
@@ -88,7 +88,7 @@
                             <td id="celId"></td>
                         </tr>
                         <tr>
-                            <td>Nombres:</td>
+                            <td>Nombre:</td>
                             <td id="celNombre"></td>
                         </tr>
                         <tr>

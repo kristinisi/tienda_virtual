@@ -222,6 +222,75 @@ function fntdelItem(element) {
   }
 }
 
+if (document.querySelector("#formRegister")) {
+  let formRegister = document.querySelector("#formRegister");
+  formRegister.onsubmit = function (e) {
+    e.preventDefault();
+
+    let strIdentificacion = document.querySelector("#txtIdentificacion").value;
+    let strNombre = document.querySelector("#txtNombre").value;
+    let strApellido = document.querySelector("#txtApellido").value;
+    let intTelefono = document.querySelector("#txtTelefono").value;
+    let strEmail = document.querySelector("#txtEmailCliente").value;
+    let strPassword = document.querySelector("#txtPasswordCliente").value;
+
+    console.log(
+      strIdentificacion,
+      strNombre,
+      strApellido,
+      intTelefono,
+      strEmail,
+      strPassword
+    );
+
+    if (
+      strIdentificacion == "" ||
+      strNombre == "" ||
+      strApellido == "" ||
+      intTelefono == "" ||
+      strEmail == "" ||
+      strPassword == ""
+    ) {
+      swal("Atención", "Todos los campos son obligatorios.", "error");
+      return false;
+    }
+
+    // verificamos los campos del formulario
+    let elementsValid = document.getElementsByClassName("valid");
+    for (let i = 0; i < elementsValid.length; i++) {
+      if (elementsValid[i].classList.contains("is-invalid")) {
+        swal("Atención", "Por favor verifique los campos en rojo.", "error");
+        return false;
+      }
+    }
+
+    divLoading.style.display = "flex";
+    let request = window.XMLHttpRequest
+      ? new XMLHttpRequest()
+      : new ActiveXObject("Microsoft.XMLHTTP");
+    let ajaxUrl = base_url + "/Tienda/registro"; //tenemos la url en el controlador tienda
+    let formData = new FormData(formRegister);
+    request.open("POST", ajaxUrl, true);
+    request.send(formData);
+
+    request.onreadystatechange = function () {
+      if (request.readyState == 4 && request.status == 200) {
+        console.log(request.responseText);
+        let objData = JSON.parse(request.responseText);
+        if (objData.status) {
+          //hacemos que se recargue de nuevo la página para que nos de la vista para la dirección de envío y podamos hacer el pago
+          swal("Bienenido!", objData.msg, "success");
+          window.location.reload(false);
+        } else {
+          swal("Error", objData.msg, "error");
+        }
+      }
+      divLoading.style.display = "none";
+      return false;
+    };
+  };
+}
+
 //función para actualizar la cantidad del producto en la vista del carrito
 function fntUpdateCant(pro, cant) {
   if (cant <= 0) {
@@ -262,53 +331,129 @@ function fntUpdateCant(pro, cant) {
   return false;
 }
 
-if (document.querySelector("#formRegister")) {
-  let formRegister = document.querySelector("#formRegister");
-  formRegister.onsubmit = function (e) {
+// Vamos a validar si existe la dirección
+if (document.querySelector("#txtDireccion")) {
+  let direccion = document.querySelector("#txtDireccion");
+  direccion.addEventListener("keyup", function () {
+    //se va a ejecutar la función cuando terminemos de presionar la tecla
+    let dir = this.value;
+    fntViewPago();
+  });
+}
+
+//Vamos a validar si existe la ciudad
+if (document.querySelector("#txtCiudad")) {
+  let ciudad = document.querySelector("#txtCiudad");
+  ciudad.addEventListener("keyup", function () {
+    //se va a ejecutar la función cuando terminemos de presionar la tecla
+    let c = this.value;
+    fntViewPago();
+  });
+}
+
+//Vamos a validar si existe la tarjeta
+if (document.querySelector("#tarjeta")) {
+  let tarjeta = document.querySelector("#tarjeta");
+  tarjeta.addEventListener("keyup", function () {
+    //se va a ejecutar la función cuando terminemos de presionar la tecla
+    let tar = this.value;
+    fntViewPago();
+  });
+}
+
+//Vamos a validar si existe la caducidad
+if (document.querySelector("#caducidad")) {
+  let caducidad = document.querySelector("#caducidad");
+  caducidad.addEventListener("keyup", function () {
+    //se va a ejecutar la función cuando terminemos de presionar la tecla
+    let cad = this.value;
+    fntViewPago();
+  });
+}
+
+//Vamos a validar si existe la seguridad
+if (document.querySelector("#seguridad")) {
+  let seguridad = document.querySelector("#seguridad");
+  seguridad.addEventListener("keyup", function () {
+    //se va a ejecutar la función cuando terminemos de presionar la tecla
+    let seg = this.value;
+    fntViewPago();
+  });
+}
+
+//Vamos a validar si existe el titular
+if (document.querySelector("#titular")) {
+  let titular = document.querySelector("#titular");
+  titular.addEventListener("keyup", function () {
+    //se va a ejecutar la función cuando terminemos de presionar la tecla
+    let tit = this.value;
+    fntViewPago();
+  });
+}
+
+function fntViewPago() {
+  let direccion = document.querySelectorAll("#txtDireccion").value;
+  let ciudad = document.querySelector("#txtCiudad").value;
+  let tarjeta = document.querySelector("#tarjeta").value;
+  let caducidad = document.querySelector("#caducidad").value;
+  let seguridad = document.querySelector("#seguridad").value;
+  let titular = document.querySelector("#titular").value;
+  if (
+    direccion == "" ||
+    ciudad == "" ||
+    tarjeta == "" ||
+    caducidad == "" ||
+    seguridad == "" ||
+    titular == ""
+  ) {
+    document.querySelector("#btnComprar").classList.add("notBlock");
+  } else {
+    document.querySelector("#btnComprar").classList.remove("notBlock");
+  }
+}
+
+//PARA GUARDAR PEDIDO
+if (document.querySelector("#formPedido")) {
+  let formPedido = document.querySelector("#formPedido");
+  formPedido.onsubmit = function (e) {
     e.preventDefault();
 
-    let strIdentificacion = document.querySelector("#txtIdentificacion").value;
-    let strNombre = document.querySelector("#txtNombre").value;
-    let strApellido = document.querySelector("#txtApellido").value;
-    let intTelefono = document.querySelector("#txtTelefono").value;
-    let strEmail = document.querySelector("#txtEmailCliente").value;
-    let strPassword = document.querySelector("#txtPassword").value;
+    let direccion = document.querySelector("#txtDireccion").value;
+    let ciudad = document.querySelector("#txtCiudad").value;
+    let tarjeta = document.querySelector("#tarjeta").value;
+    let caducidad = document.querySelector("#caducidad").value;
+    let seguridad = document.querySelector("#seguridad").value;
+    let titular = document.querySelector("#titular").value;
 
     if (
-      strIdentificacion == "" ||
-      strNombre == "" ||
-      strApellido == "" ||
-      intTelefono == "" ||
-      strEmail == "" ||
-      strPassword == ""
+      direccion == "" ||
+      ciudad == "" ||
+      tarjeta == "" ||
+      caducidad == "" ||
+      seguridad == "" ||
+      titular == ""
     ) {
       swal("Atención", "Todos los campos son obligatorios.", "error");
       return false;
     }
 
-    //verificamos los campos del formulario
-    let elementsValid = document.getElementsByClassName("valid");
-    for (let i = 0; i < elementsValid.length; i++) {
-      if (elementsValid[i].classList.contains("is-invalid")) {
-        swal("Atención", "Por favor verifique los campos en rojo.", "error");
-        return false;
-      }
-    }
     divLoading.style.display = "flex";
     let request = window.XMLHttpRequest
       ? new XMLHttpRequest()
       : new ActiveXObject("Microsoft.XMLHTTP");
-    let ajaxUrl = base_url + "/Tienda/registro"; //tenemos la url en el controlador tienda
-    let formData = new FormData(formRegister);
+    let ajaxUrl = base_url + "/Tienda/registroPedido"; //tenemos la url en el controlador tienda
+    let formData = new FormData(formPedido);
     request.open("POST", ajaxUrl, true);
     request.send(formData);
 
     request.onreadystatechange = function () {
       if (request.readyState == 4 && request.status == 200) {
+        console.log(request.responseText);
         let objData = JSON.parse(request.responseText);
         if (objData.status) {
           //hacemos que se recargue de nuevo la página para que nos de la vista para la dirección de envío y podamos hacer el pago
-          window.location.reload(false);
+          swal("Gracias por su compra!", objData.msg, "success");
+          window.location.href = base_url; //redireccionamos a la página principal
         } else {
           swal("Error", objData.msg, "error");
         }
