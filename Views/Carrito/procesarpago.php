@@ -38,31 +38,31 @@ $total = $subtotal + COSTOENVIO;
                             <div>
                                 <label for="tipopago">Dirección de envío</label>
                                 <div class="bor8 bg0 m-b-12">
-                                    <input id="txtDireccion" class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="direccion" placeholder="Dirección de envío" required>
+                                    <input id="txtDireccion" class="form-control stext-111 cl8 plh3 size-111 p-lr-15 " type="text" name="txtDireccion" placeholder="Dirección de envío" required>
                                 </div>
                                 <div class="bor8 bg0 m-b-22">
-                                    <input id="txtCiudad" class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="ciudad" placeholder="Ciudad / Estado" required>
+                                    <input id="txtCiudad" class="form-control stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="txtCiudad" placeholder="Ciudad / Estado" required>
                                 </div>
                                 <br><br>
                                 <label>Datos de la tarjeta</label>
                                 <div class=" bg0 m-b-12">
                                     <label for="tarjeta">Número de Tarjeta: </label>
-                                    <input id="tarjeta" class="form-control" type="text" pattern="[0-9]{4}[ ][0-9]{4}[ ][0-9]{4}[ ][0-9]{4}" maxlength="19" minlength="19" placeholder="XXXX XXXX XXXX XXXX" required>
+                                    <input id="tarjeta" class="form-control " type="text" pattern="[0-9]{4}[ ][0-9]{4}[ ][0-9]{4}[ ][0-9]{4}" maxlength="19" minlength="19" placeholder="XXXX XXXX XXXX XXXX" required>
                                     <div class="invalid-feedback">El número de tarjeta debe de ser 16 número con un espacio entre medias cada 4 números.</div>
                                 </div>
                                 <div class="bg0 m-b-12">
                                     <label for="caducidad">Caducidad: </label>
-                                    <input id="caducidad" class="form-control" type="text" pattern="(0[1-9]|1[0-2])\/(2[2-9]|[3-9][0-9])" maxlength="5" minlength="5" required placeholder="mm/yy">
+                                    <input id="caducidad" class="form-control " type="text" pattern="(0[1-9]|1[0-2])\/(2[2-9]|[3-9][0-9])" maxlength="5" minlength="5" required placeholder="mm/yy">
                                     <div class="invalid-feedback">La caducidad debe ser mes/año</div>
                                 </div>
                                 <div class="bg0 m-b-12">
                                     <label for="seguridad">Código de seguridad/CVV2: </label>
-                                    <input type="text" id="seguridad" class="form-control" pattern="[0-9]{3}" maxlength="3" minlength="3" required>
+                                    <input type="text" id="seguridad" class="form-control " pattern="[0-9]{3,4}" maxlength="3" minlength="3" required>
                                     <div class="invalid-feedback">El número de seguridad son 3 números</div>
                                 </div>
                                 <div class="bg0 m-b-12">
                                     <label for="titular">Titular de la Tarjeta: </label>
-                                    <input type="text" id="titular" class="form-control" pattern="[A-Za-z]+(\s[A-Za-z]+)*" required>
+                                    <input type="text" id="titular" class="form-control " pattern="[A-Za-z]+(\s[A-Za-z]+)*" required>
                                     <div class="invalid-feedback">Debe introducir el titular de la tarjeta</div>
                                 </div>
                             </div>

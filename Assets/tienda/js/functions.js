@@ -417,6 +417,7 @@ if (document.querySelector("#formPedido")) {
   let formPedido = document.querySelector("#formPedido");
   formPedido.onsubmit = function (e) {
     e.preventDefault();
+    e.stopPropagation();
 
     let direccion = document.querySelector("#txtDireccion").value;
     let ciudad = document.querySelector("#txtCiudad").value;
@@ -424,6 +425,11 @@ if (document.querySelector("#formPedido")) {
     let caducidad = document.querySelector("#caducidad").value;
     let seguridad = document.querySelector("#seguridad").value;
     let titular = document.querySelector("#titular").value;
+
+    //Hacemos algunas validaciones
+    const tarjetaPattern = /^[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}$/;
+    const caducidadPattern = /(0[1-9]|1[0-2])\/(2[2-9]|[3-9][0-9])/;
+    const seguridadPattern = /^[0-9]{3,4}$/;
 
     if (
       direccion == "" ||
@@ -434,6 +440,15 @@ if (document.querySelector("#formPedido")) {
       titular == ""
     ) {
       swal("Atención", "Todos los campos son obligatorios.", "error");
+      return false;
+    }
+
+    if (
+      !tarjetaPattern.test(tarjeta) ||
+      !caducidadPattern.test(caducidad) ||
+      !seguridadPattern.test(seguridad)
+    ) {
+      swal("Atención", "Algunos campos no son correctos.", "error");
       return false;
     }
 

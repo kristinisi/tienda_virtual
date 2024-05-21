@@ -303,12 +303,12 @@ class Tienda extends Controllers
 
             //verificamos si el usuario se guardo correctamente en la base de datos
             if ($request > 0) {
-
                 //hacemos el detalle del pedido
                 foreach ($_SESSION['arrCarrito'] as $pro) {
                     $productoId = $pro['idproducto'];
                     $precio = $pro['precio'];
                     $cantidad = $pro['cantidad'];
+
                     $this->insertDetPedido(
                         $request,
                         $productoId,
@@ -318,6 +318,7 @@ class Tienda extends Controllers
                 }
 
                 $arrResponse = array('status' => true, 'msg' => 'Pedido hecho correctamente.');
+                unset($_SESSION['arrCarrito']); //eliminamos el carrito
             } else {
                 $arrResponse = array("status" => false, "msg" => 'No es posible hacer el pedido.');
             }
