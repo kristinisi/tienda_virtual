@@ -22,6 +22,12 @@ class Dashboard extends Controllers
         $data['page_title'] = "Dashboard - HANAKO";
         $data['page_name'] = "dashboard";
         $data['page_functions_js'] = "functions_dashboard.js";
+
+        $data['usuarios'] = $this->model->cantUsuarios();
+        $data['categorias'] = $this->model->cantCategorias();
+        $data['productos'] = $this->model->cantProductos();
+        $data['pedidos'] = $this->model->cantPedidos();
+
         //hacemos el llamado a la vista que queremos mostrar mandandole como parámetro el array 
         $this->views->getView($this, "dashboard", $data);
     }

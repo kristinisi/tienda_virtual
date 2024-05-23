@@ -216,6 +216,7 @@ body {
   margin: 10px;
 }
 
+/* Para evitar que se muestre el mensaje de las validaciones buenas */
 .custom-select.is-valid ~ .invalid-feedback,
 .custom-select.is-valid ~ .invalid-tooltip,
 .form-control.is-valid ~ .invalid-feedback,
@@ -225,4 +226,14 @@ body {
 .was-validated .form-control:valid ~ .invalid-feedback,
 .was-validated .form-control:valid ~ .invalid-tooltip {
   display: none !important;
+}
+
+/* Para eliminar la linea de los enlaces del dashboard */
+.linkw:hover {
+  text-decoration: none;
+}
+
+/* Para ajustar logotipo de dashboard */
+.logo_dashboard {
+  margin-left: 30%;
 }
