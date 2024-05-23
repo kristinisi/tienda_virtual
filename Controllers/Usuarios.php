@@ -11,7 +11,7 @@ class Usuarios extends Controllers
         if (empty($_SESSION['login'])) {
             header('Location: ' . base_url() . '/login');
         }
-        getPermisos(2); //es un 2 porque se refiere a ususarios
+        getPermisos(MUSUARIOS); //se refiere al modulo ususarios
     }
 
     public function Usuarios($parems)

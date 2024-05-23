@@ -77,7 +77,6 @@ $rutacategoria = $arrProducto['categoriaid'] . "/" . $arrProducto['ruta_categori
                         <?= $arrProducto['descripcion'] ?>
                     </p>
 
-                    <!--  -->
                     <div class="p-t-33">
 
                         <div class="flex-w flex-r-m p-b-10">
@@ -102,7 +101,7 @@ $rutacategoria = $arrProducto['categoriaid'] . "/" . $arrProducto['ruta_categori
                         </div>
                     </div>
 
-                    <!--  -->
+
                     <div class="flex-w flex-m p-l-100 p-t-40 respon7">
                         <div class="flex-m bor9 p-r-10 m-r-11">
                             <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">

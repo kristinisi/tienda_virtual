@@ -8,7 +8,7 @@ class Productos extends Controllers
         if (empty($_SESSION['login'])) { //si la sesión no contiene nada nos redirige al login
             header('Location: ' . base_url() . '/login');
         }
-        getPermisos(4); //ponemos el 4 porque es el id del módulo de productos
+        getPermisos(MPRODUCTOS); //es el id del módulo de productos
     }
 
     public function Productos()

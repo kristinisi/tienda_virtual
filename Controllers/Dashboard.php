@@ -11,7 +11,7 @@ class Dashboard extends Controllers
         if (empty($_SESSION['login'])) {
             header('Location: ' . base_url() . '/login');
         }
-        getPermisos(1);
+        getPermisos(MDASHBOARD); //se refiere al id del modulo de dashboard
     }
 
     public function dashboard($parems)

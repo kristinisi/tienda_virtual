@@ -28,14 +28,6 @@
                     </ul>
                 </li>
             <?php } ?>
-            <?php if (!empty($_SESSION['permisos'][3]['r'])) { ?>
-                <li>
-                    <a class="app-menu__item" href="<?= base_url(); ?>/clientes">
-                        <i class="app-menu__icon fa-solid fa-user"></i>
-                        <span class="app-menu__label">Clientes</span>
-                    </a>
-                </li>
-            <?php } ?>
             <?php if ((!empty($_SESSION['permisos'][4]['r'])) || (!empty($_SESSION['permisos'][6]['r']))) { ?>
                 <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview">
                         <i class="app-menu__icon fa-solid fa-shop"></i>

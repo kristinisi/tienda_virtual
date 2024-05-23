@@ -11,7 +11,7 @@ class Categorias extends Controllers
         if (empty($_SESSION['login'])) {
             header('Location: ' . base_url() . '/login'); //si eel login está vacío nos lleva a la vista login
         }
-        getPermisos(6); //es un 6 porque se refiere al id del módulo categoría
+        getPermisos(MCATEGORIAS); //se refiere al id del módulo categoría
     }
 
     public function Categorias($parems)

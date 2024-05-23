@@ -11,7 +11,7 @@ class Roles extends Controllers
         if (empty($_SESSION['login'])) {
             header('Location: ' . base_url() . '/login');
         }
-        getPermisos(2); //es un 2 porque se refiere a usuarios
+        getPermisos(MUSUARIOS); //es un 2 porque se refiere a usuarios
     }
 
     public function roles($parems)

@@ -17,14 +17,12 @@ headerAdmin($data);
             <div class="tile">
                 <div class="tile-body">
                     <div class="table-responsive">
-                        <table class="table table-hover table-bordered" id="tableProductos">
+                        <table class="table table-hover table-bordered" id="tablePedidos">
                             <thead>
                                 <tr>
                                     <th>Id Pedido</th>
-                                    <th>Nombre</th>
-                                    <th>Stock</th>
-                                    <th>Precio</th>
-                                    <th>Estado</th>
+                                    <th>Fecha</th>
+                                    <th>Monto</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
