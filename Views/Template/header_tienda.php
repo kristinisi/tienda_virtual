@@ -64,22 +64,30 @@ if (isset($_SESSION['arrCarrito']) and count($_SESSION['arrCarrito']) > 0) {
             <!-- Topbar -->
             <div class="top-bar">
                 <div class="content-topbar flex-sb-m h-full container">
+                    <!-- Validamos si existe la variable sesión login -->
+
                     <div class="left-top-bar">
-                        Bienvenido usuario: Cristina Gutierrez
+                        <?php if (isset($_SESSION['login'])) { ?>
+                            Bienvenido: <?= $_SESSION['userData']['nombre'] . " " . $_SESSION['userData']['apellidos'] ?>
+                        <?php } ?>
                     </div>
 
                     <div class="right-top-bar flex-w h-full">
-                        <!-- <a href="#" class="flex-c-m trans-04 p-lr-25">
-                            Help & FAQs
-                        </a> -->
 
-                        <a href="#" class="flex-c-m trans-04 p-lr-25">
-                            Mi cuenta
-                        </a>
-
-                        <a href="#" class="flex-c-m trans-04 p-lr-25">
-                            Salir
-                        </a>
+                        <?php if (isset($_SESSION['login'])) { ?>
+                            <a href="<?= base_url() ?>/dashboard" class="flex-c-m trans-04 p-lr-25">
+                                Mi cuenta
+                            </a>
+                        <?php } ?>
+                        <?php if (isset($_SESSION['login'])) { ?>
+                            <a href="<?= base_url() ?>/logout" class="flex-c-m trans-04 p-lr-25">
+                                Salir
+                            </a>
+                        <?php } else { ?>
+                            <a href="<?= base_url() ?>/login" class="flex-c-m trans-04 p-lr-25">
+                                Iniciar Sesión
+                            </a>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
@@ -170,20 +178,29 @@ if (isset($_SESSION['arrCarrito']) and count($_SESSION['arrCarrito']) > 0) {
             <ul class="topbar-mobile">
                 <li>
                     <div class="left-top-bar">
-                        Bienvenido Cristina
+                        <?php if (isset($_SESSION['login'])) { ?>
+                            Bienvenido: <?= $_SESSION['userData']['nombre'] . " " . $_SESSION['userData']['apellidos'] ?>
+                        <?php } ?>
                     </div>
                 </li>
 
                 <li>
                     <div class="right-top-bar flex-w h-full">
 
-                        <a href="#" class="flex-c-m p-lr-10 trans-04">
-                            Mi cuenta
-                        </a>
-
-                        <a href="#" class="flex-c-m p-lr-10 trans-04">
-                            Salir
-                        </a>
+                        <?php if (isset($_SESSION['login'])) { ?>
+                            <a href="<?= base_url() ?>/dashboard" class="flex-c-m trans-04 p-lr-25">
+                                Mi cuenta
+                            </a>
+                        <?php } ?>
+                        <?php if (isset($_SESSION['login'])) { ?>
+                            <a href="<?= base_url() ?>/logout" class="flex-c-m trans-04 p-lr-25">
+                                Salir
+                            </a>
+                        <?php } else { ?>
+                            <a href="<?= base_url() ?>/login" class="flex-c-m trans-04 p-lr-25">
+                                Iniciar Sesión
+                            </a>
+                        <?php } ?>
                     </div>
                 </li>
             </ul>

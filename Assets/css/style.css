@@ -234,6 +234,9 @@ body {
 }
 
 /* Para ajustar logotipo de dashboard */
-.logo_dashboard {
-  margin-left: 30%;
+.tile-body2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }

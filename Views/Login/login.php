@@ -20,7 +20,7 @@
     </section>
     <section class="login-content">
         <div class="logo">
-            <h1>HANAKO</h1>
+            <a href="<?= base_url(); ?>"><img class="logo_dashboard" src="<?= media(); ?>/images/floristeria2.png" alt=""></a>
         </div>
         <div class="login-box">
             <div id="divLoading">

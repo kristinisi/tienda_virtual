@@ -8,6 +8,13 @@
             </div>
         </div>
         <ul class="app-menu">
+            <li>
+                <a class="app-menu__item" href="<?= base_url(); ?>" target="_black">
+                    <i class="app-menu__icon fa-solid fa-globe"></i>
+                    <span class="app-menu__label">Ver sitio web</span>
+                </a>
+
+            </li>
             <?php if (!empty($_SESSION['permisos'][1]['r'])) { ?> <!-- si existe en la sesion de permisos el elemento 1 y contiene r, va a mostrar todo lo que esté dentro del php -->
 
                 <li>

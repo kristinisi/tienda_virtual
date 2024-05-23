@@ -12,7 +12,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="tile">
-                <div class="tile-body"><img class="logo_dashboard" src="<?= media(); ?>/images/floristeria2.png" alt=""></div>
+                <div class="tile-body2"><img class="logo_dashboard" src="<?= media(); ?>/images/floristeria2.png" alt=""></div>
             </div>
         </div>
     </div>

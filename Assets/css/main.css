@@ -16490,7 +16490,7 @@ be a descendant of the grid when it is being dragged.
   }
 }
 
-.material-half-bg {
+/* .material-half-bg {
   height: 100vh;
   background-color: #e7e7e7;
   position: fixed;
@@ -16499,12 +16499,12 @@ be a descendant of the grid when it is being dragged.
   right: 0;
   bottom: 0;
   z-index: -1;
-}
+} */
 
-.material-half-bg .cover {
+/* .material-half-bg .cover {
   background-color: #f3b3b2ff;
   height: 50vh;
-}
+} */
 
 .m-loader {
   position: relative;

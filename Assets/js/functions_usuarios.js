@@ -28,7 +28,7 @@ document.addEventListener(
       ],
       resonsieve: "true",
       bDestroy: true,
-      iDisplayLength: 1,
+      iDisplayLength: 10,
       order: [[0, "desc"]],
     });
 
