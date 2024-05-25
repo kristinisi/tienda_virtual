@@ -27,10 +27,10 @@ const SPM = ".";
 const SMONEY = "€";
 
 //constante para las categorias del slider
-const CAT_SLIDER = "1,2,3";
+const CAT_SLIDER = "4,5,6";
 
 //constante para las categorias del banner
-const CAT_BANNER = "1,2,3";
+const CAT_BANNER = "7,8,9";
 
 //constante para las categorias del footer
 // const CAT_FOOTER = "1,2,3,4,5,6";

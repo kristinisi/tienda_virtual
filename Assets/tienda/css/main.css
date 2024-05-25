@@ -251,7 +251,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 }
 
 .right-top-bar a:hover {
-  color: #f3b3b2ff;
+  color: #ed7975ff;
 }
 
 /*---------------------------------------------*/
@@ -430,7 +430,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 /*---------------------------------------------*/
 .main-menu > li:hover > a {
   text-decoration: none;
-  color: #f3b3b2ff;
+  color: #ed7975ff;
 }
 
 .main-menu > li:hover > .sub-menu {
@@ -448,7 +448,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 }
 
 .sub-menu > li:hover > a {
-  color: #f3b3b2ff;
+  color: #ed7975ff;
   text-decoration: none;
 }
 
@@ -567,7 +567,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 }
 
 .wrap-search-header button:hover {
-  color: #f3b3b2ff;
+  color: #ed7975ff;
 }
 
 /*---------------------------------------------*/
@@ -625,7 +625,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 
 /*---------------------------------------------*/
 .main-menu > li.active-menu > a {
-  color: #f3b3b2ff;
+  color: #ed7975ff;
 }
 
 /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -1121,7 +1121,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   .select2-container--default
   .select2-selection--single
   .select2-selection__arrow:hover:after {
-  color: #f3b3b2ff;
+  color: #ed7975ff;
 }
 
 /*------------------------------------------------------------------
@@ -1156,14 +1156,14 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 }
 
 .rs1-select2 .select2-container .select2-results__option[aria-selected="true"] {
-  background: #f3b3b2ff;
+  background: #ed7975ff;
   color: white;
 }
 
 .rs1-select2
   .select2-container
   .select2-results__option--highlighted[aria-selected] {
-  background: #f3b3b2ff;
+  background: #ed7975ff;
   color: white;
 }
 
@@ -1774,13 +1774,13 @@ button.mfp-close {
 }
 
 .filter-link:hover {
-  color: #f3b3b2ff;
-  border-bottom: 1px solid #f3b3b2ff;
+  color: #ed7975ff;
+  border-bottom: 1px solid #ed7975ff;
 }
 
 .filter-link-active {
-  color: #f3b3b2ff;
-  border-bottom: 1px solid #f3b3b2ff;
+  color: #ed7975ff;
+  border-bottom: 1px solid #ed7975ff;
 }
 
 @media (max-width: 767px) {
@@ -2895,7 +2895,7 @@ input.num-product::-webkit-inner-spin-button {
 
 /*---------------------------------------------*/
 .js-addedwish-detail {
-  color: #f3b3b2ff;
+  color: #ed7975ff;
 }
 
 /*---------------------------------------------*/

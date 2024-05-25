@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
     ],
     resonsieve: "true",
     bDestroy: true,
-    iDisplayLength: 1, //es el numero de registros que se quiere mostrar
+    iDisplayLength: 10, //es el numero de registros que se quiere mostrar
     order: [[0, "desc"]],
   });
 
