@@ -49,11 +49,8 @@ class Pedidos extends Controllers
                 if ($_SESSION['permisosMod']['r']) { //comprobamos permisos de lectura
                     $btnView .= ' <a title="Ver Detalle" href="' . base_url() . '/pedidos/orden/' . $arrData[$i]['idpedido'] . '" target="_blanck" class="btn btn-info btn-sm"> <i class="far fa-eye"></i> </a>';
                 }
-                // if ($_SESSION['permisosMod']['u']) { //comprobamos permiso de actualización
-                //     $btnEdit = '<button class="btn btn-primary  btn-sm" onClick="fntEditInfo(' . $arrData[$i]['idproducto'] . ')" title="Editar producto"><i class="fas fa-pencil-alt"></i></button>';
-                // }
                 if ($_SESSION['permisosMod']['d']) { //comprobamos permisos de borrado
-                    $btnDelete = '<button class="btn btn-danger btn-sm" onClick="fntDelInfo(' . $arrData[$i]['idpedido'] . ')" title="Eliminar pedido"><i class="far fa-trash-alt"></i></button>';
+                    $btnDelete = '<button class="btn btn-danger btn-sm" onClick="fntDelPedido(' . $arrData[$i]['idpedido'] . ')" title="Eliminar pedido"><i class="far fa-trash-alt"></i></button>';
                 }
                 //ponemos los botones necesarios segun los permisos
                 $arrData[$i]['options'] = '<div class="text-center">' . $btnView . ' ' . $btnEdit . ' ' . $btnDelete . '</div>';
@@ -82,5 +79,23 @@ class Pedidos extends Controllers
         $data['page_name'] = "pedido";
         $data['arrPedido'] = $this->model->selectPedido($idpedido, $idpersona);
         $this->views->getView($this, "orden", $data);
+    }
+
+    //método para eliminar un pedido
+    public function delPedido()
+    {
+        if ($_POST) {
+            if ($_SESSION['permisosMod']['d']) { //comprobamos si el usuario tiene permiso para eliminar 
+                $intIdPedido = intval($_POST['idPedido']);
+                $requestDelete = $this->model->deletePedido($intIdPedido); //llamamos al modelo para que haga la consulta
+                if ($requestDelete) {
+                    $arrResponse = array('status' => true, 'msg' => 'Se ha eliminado el producto');
+                } else {
+                    $arrResponse = array('status' => false, 'msg' => 'Error al eliminar el producto.');
+                }
+                echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+            }
+        }
+        die();
     }
 }

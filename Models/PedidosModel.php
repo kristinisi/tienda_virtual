@@ -1,6 +1,9 @@
 <?php
 class PedidosModel extends Mysql
 {
+
+    private $intIdPedido;
+
     public function __construct()
     {
         //cargamos el método constructor de la clase padre
@@ -63,6 +66,15 @@ class PedidosModel extends Mysql
                 'detalle' => $requestProductos
             );
         }
+        return $request;
+    }
+
+    //método que elimina un producto de la base de datos
+    public function deletePedido(int $idpedido)
+    {
+        $this->intIdPedido = $idpedido;
+        $sql = "DELETE FROM pedido WHERE idpedido = $this->intIdPedido ";
+        $request = $this->delete($sql);
         return $request;
     }
 }
