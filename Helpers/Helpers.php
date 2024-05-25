@@ -209,3 +209,11 @@ function formatMoney($cantidad)
     $cantidad = number_format($cantidad, 2, SPD, SPM);
     return $cantidad;
 }
+
+function getCatFooter()
+{
+    require_once("Models/CategoriasModel.php");
+    $objCategoria = new CategoriasModel();
+    $request = $objCategoria->getCategoriasFooter();
+    return $request;
+}

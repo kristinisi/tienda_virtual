@@ -32,6 +32,9 @@ const CAT_SLIDER = "1,2,3";
 //constante para las categorias del banner
 const CAT_BANNER = "1,2,3";
 
+//constante para las categorias del footer
+// const CAT_FOOTER = "1,2,3,4,5,6";
+
 //Datos para Encriptar / Desencriptar
 const KEY = 'cristina';
 const METHODENCRIPT = "AES-128-ECB";
@@ -50,3 +53,8 @@ const MCATEGORIAS = 6;
 //constantes para roles
 const RADMINISTRADOR = 1;
 const RCLIENTE = 2;
+
+
+//Constante para mostrar el limite de productos a mostrar por página
+const CANTPORHOME = 2;
+const PROPORPAGINA = 2;

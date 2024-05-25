@@ -81,7 +81,7 @@ $rutacategoria = $arrProducto['categoriaid'] . "/" . $arrProducto['ruta_categori
 
                         <div class="flex-w flex-r-m p-b-10">
                             <div class="size-204 flex-w flex-m respon6-next">
-                                <div class="wrap-num-product flex-w m-r-20 m-tb-10">
+                                <div class="wrap-num-product flex-w m-r-20 m-tb-10 own_stylye">
                                     <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
                                         <i class="fs-16 zmdi zmdi-minus"></i>
                                     </div>
@@ -102,7 +102,7 @@ $rutacategoria = $arrProducto['categoriaid'] . "/" . $arrProducto['ruta_categori
                     </div>
 
 
-                    <div class="flex-w flex-m p-l-100 p-t-40 respon7">
+                    <!-- <div class="flex-w flex-m p-l-100 p-t-40 respon7">
                         <div class="flex-m bor9 p-r-10 m-r-11">
                             <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
                                 <i class="zmdi zmdi-favorite"></i>
@@ -120,7 +120,7 @@ $rutacategoria = $arrProducto['categoriaid'] . "/" . $arrProducto['ruta_categori
                         <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Google Plus">
                             <i class="fa fa-google-plus"></i>
                         </a>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -170,12 +170,12 @@ $rutacategoria = $arrProducto['categoriaid'] . "/" . $arrProducto['ruta_categori
                                         </span>
                                     </div>
 
-                                    <div class="block2-txt-child2 flex-r p-t-3">
+                                    <!-- <div class="block2-txt-child2 flex-r p-t-3">
                                         <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
                                             <img class="<?= media(); ?>/tienda/icon-heart1 dis-block trans-04" src="<?= media(); ?>/tienda/images/icons/icon-heart-01.png" alt="ICON">
                                             <img class="<?= media(); ?>/tienda/icon-heart2 dis-block trans-04 ab-t-l" src="<?= media(); ?>/tienda/images/icons/icon-heart-02.png" alt="ICON">
                                         </a>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>

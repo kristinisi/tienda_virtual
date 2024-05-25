@@ -9,7 +9,12 @@ class Errors extends Controllers
 
     public function notFound()
     {
-        $this->views->getView($this, "error");
+        $data['page_tag'] = "HANAKO";
+        $data['page_title'] = "Error";
+        $data['page_name'] = "error";
+        //hacemos el llamado a la vista que queremos mostrar mandandole como parámetro el array 
+        $this->views->getView($this, "error", $data);
+        // $this->views->getView($this, "error");
     }
 }
 

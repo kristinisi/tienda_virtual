@@ -240,3 +240,16 @@ body {
   align-items: center;
   height: 100%;
 }
+
+/* Para poner en columnas el boton caarrito */
+.flex-m {
+  flex-direction: column;
+}
+
+.footer_redes {
+  padding: none;
+}
+
+.page-error {
+  margin: 40px;
+}

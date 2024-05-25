@@ -127,9 +127,9 @@ if (isset($_SESSION['arrCarrito']) and count($_SESSION['arrCarrito']) > 0) {
 
                     <!-- Icon header -->
                     <div class="wrap-icon-header flex-w flex-r-m">
-                        <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
+                        <!-- <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
                             <i class="zmdi zmdi-search"></i>
-                        </div>
+                        </div> -->
                         <!-- Dentro de la página del carrito no vamos a mostrar el icono asique hacemos una comprobación -->
                         <?php if ($data['page_name'] != "carrito") { ?>
 
@@ -229,20 +229,21 @@ if (isset($_SESSION['arrCarrito']) and count($_SESSION['arrCarrito']) > 0) {
         </div>
 
         <!-- Modal Search -->
-        <div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
+        <!-- <div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
             <div class="container-search-header">
                 <button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
                     <img src="<?= media() ?>/tienda/images/icons/icon-close2.png" alt="CLOSE">
                 </button>
 
-                <form class="wrap-search-header flex-w p-l-15">
+                <form class="wrap-search-header flex-w p-l-15" method="get" action="<?= base_url(); ?>/tienda/search">
                     <button class="flex-c-m trans-04">
                         <i class="zmdi zmdi-search"></i>
                     </button>
-                    <input class="plh3" type="text" name="search" placeholder="Search...">
+                    <input type="hidden" name="p" value="1">
+                    <input class="plh3" type="text" name="s" placeholder="Buscar...">
                 </form>
             </div>
-        </div>
+        </div> -->
     </header>
 
     <!-- Carrito MODAL -->

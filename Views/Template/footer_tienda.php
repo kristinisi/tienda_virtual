@@ -1,3 +1,7 @@
+<?php
+$catFooter = getCatFooter();
+?>
+
 <!-- Footer -->
 <footer class="bg3 p-t-75 p-b-32">
     <div class="container">
@@ -6,32 +10,18 @@
                 <h4 class="stext-301 cl0 p-b-30">
                     CATEGORÍAS
                 </h4>
-
-                <ul>
-                    <li class="p-b-10">
-                        <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-                            Women
-                        </a>
-                    </li>
-
-                    <li class="p-b-10">
-                        <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-                            Men
-                        </a>
-                    </li>
-
-                    <li class="p-b-10">
-                        <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-                            Shoes
-                        </a>
-                    </li>
-
-                    <li class="p-b-10">
-                        <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-                            Watches
-                        </a>
-                    </li>
-                </ul>
+                <?php if (count($catFooter) > 0) { ?>
+                    <ul>
+                        <?php foreach ($catFooter as $cat) { ?>
+                            <li class="p-b-10">
+                                <a href="<?= base_url() ?>/tienda/categoria/<?= $cat['idcategoria'] . "/" . $cat['ruta'] ?>" class="stext-107 cl7 hov-cl1 trans-04">
+                                    <?= $cat['nombre'] ?>
+                                </a>
+                            </li>
+                        <?php } ?>
+                    </ul>
+                <?php }
+                0 ?>
             </div>
 
             <div class="col-sm-6 col-lg-4 p-b-50">
@@ -40,11 +30,12 @@
                 </h4>
 
                 <p class="stext-107 cl7 size-201">
-                    Plaza San Francisco, Local 1 <br>
-                    Teléfono: 9268878563
+                    <?= DIRECCION ?> <br>
+                    Teléfono: <?= TELEMPRESA ?>
+                    Email: <?= EMAIL_EMPRESA  ?>;
                 </p>
 
-                <div class="p-t-27">
+                <!-- <div class="p-t-27">
                     <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
                         <i class="fa fa-facebook"></i>
                     </a>
@@ -53,11 +44,25 @@
                         <i class="fa fa-instagram"></i>
                     </a>
 
-                </div>
+                </div> -->
             </div>
 
             <div class="col-sm-6 col-lg-4 p-b-50">
-                <h4 class="stext-301 cl0 p-b-30">
+                <div class="footer_redes">
+                    <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+                        <img src="<?= media() ?>/images/facebook.png" alt="facebook">
+                    </a>
+
+                    <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16 ">
+                        <img src="<?= media() ?>/images/instagram.png" alt="instagram">
+                    </a>
+
+                </div>
+                <!-- Map -->
+                <!-- <div class="map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1550.713773137159!2d-3.9263003097974045!3d38.982737555892385!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd6bc33fe6bfa2fd%3A0xf5ba0f2365b0784a!2sPl.%20San%20Francisco%2C%201%2C%2013001%20Ciudad%20Real!5e0!3m2!1ses!2ses!4v1716635498395!5m2!1ses!2ses" width="400" height="300" style="border-radius:10px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div> -->
+                <!-- <h4 class="stext-301 cl0 p-b-30">
                     Newsletter
                 </h4>
 
@@ -72,8 +77,19 @@
                             SUSCRÍBETE
                         </button>
                     </div>
-                </form>
+                </form> -->
             </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="map col-sm-12">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1550.713773137159!2d-3.9263003097974045!3d38.982737555892385!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd6bc33fe6bfa2fd%3A0xf5ba0f2365b0784a!2sPl.%20San%20Francisco%2C%201%2C%2013001%20Ciudad%20Real!5e0!3m2!1ses!2ses!4v1716635498395!5m2!1ses!2ses" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+
+
+
         </div>
 
         <div class="p-t-40">
@@ -134,6 +150,7 @@
 <!--===============================================================================================-->
 <script src="<?= media() ?>/tienda/js/main.js"></script>
 <!--===============================================================================================-->
+<script src="<?= media(); ?>/js/fontawesome.js"></script>
 <script src="<?= media() ?>/tienda/js/functions.js"></script>
 <script src="<?= media() ?>/js/functions_admin.js"></script>
 <script src="<?= media() ?>/js/functions_login.js"></script>

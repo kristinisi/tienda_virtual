@@ -120,4 +120,16 @@ class CategoriasModel extends Mysql
         }
         return $request;
     }
+
+    public function getCategoriasFooter()
+    {
+        $sql = "SELECT * FROM categoria WHERE status = 1";
+        $request = $this->select_all($sql);
+        if (count($request) > 0) {
+            for ($i = 0; $i < count($request); $i++) {
+                $request[$i]['portada'] = BASE_URL . "/Assets/images/uploads/" . $request[$i]["portada"];
+            }
+        }
+        return $request;
+    }
 }

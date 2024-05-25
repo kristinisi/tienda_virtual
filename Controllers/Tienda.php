@@ -19,11 +19,21 @@ class Tienda extends Controllers
     //fución para la vista de la tienda
     public function tienda($parems)
     {
+
+        // $data['productos'] = $this->getProductosT();
+        $pagina = 1; //va a mostrar la página numero 1 de la paginación
+        $cantProductos = $this->cantProductos();
+        $total_registro = $cantProductos['total_registro'];
+        $desde = ($pagina - 1) * PROPORPAGINA;
+        $total_paginas = ceil($total_registro / PROPORPAGINA);
+        $data['productos'] = $this->getProductosPage($desde,  PROPORPAGINA);
+
         //invocamos la vista para la página principal
         $data['page_tag'] = "HANAKO";
         $data['page_title'] = "Tienda virtual";
         $data['page_name'] = "tienda";
-        $data['productos'] = $this->getProductosT();
+        $data['pagina'] = $pagina;
+        $data['total_paginas'] = $total_paginas;
 
         //hacemos el llamado a la vista que queremos mostrar mandandole como parámetro el array 
         $this->views->getView($this, "tienda", $data);
@@ -325,5 +335,25 @@ class Tienda extends Controllers
             echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         }
         die();
+    }
+
+    public function page($pagina = null)
+    {
+        $pagina = $pagina != null ? $pagina : 1;
+        //invocamos la vista para la página principal
+
+        $cantProductos = $this->cantProductos();
+        $total_registro = $cantProductos['total_registro'];
+        $desde = ($pagina - 1) * PROPORPAGINA;
+        $total_paginas = ceil($total_registro / PROPORPAGINA);
+        $data['productos'] = $this->getProductosPage($desde,  PROPORPAGINA);
+
+        $data['page_tag'] = "HANAKO";
+        $data['page_title'] = "Tienda virtual";
+        $data['page_name'] = "tienda";
+        $data['pagina'] = $pagina;
+        $data['total_paginas'] = $total_paginas;
+        //hacemos el llamado a la vista que queremos mostrar mandandole como parámetro el array 
+        $this->views->getView($this, "tienda", $data);
     }
 }

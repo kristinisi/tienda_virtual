@@ -40,7 +40,7 @@ $arrProductos = $data['productos'];
             </div> -->
 
             <!-- Filter -->
-            <div class="dis-none panel-filter w-full p-t-10">
+            <!-- <div class="dis-none panel-filter w-full p-t-10">
                 <div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
                     <div class="filter-col1 p-r-15 p-b-27">
                         <div class="mtext-102 cl2 p-b-15">
@@ -196,9 +196,9 @@ $arrProductos = $data['productos'];
                                 </a>
                             </li>
                         </ul>
-                    </div>
+                    </div> -->
 
-                    <div class="filter-col4 p-b-27">
+            <!-- <div class="filter-col4 p-b-27">
                         <div class="mtext-102 cl2 p-b-15">
                             Tags
                         </div>
@@ -226,7 +226,7 @@ $arrProductos = $data['productos'];
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
 
         <div class="row isotope-grid">
@@ -262,12 +262,12 @@ $arrProductos = $data['productos'];
                                     </span>
                                 </div>
 
-                                <div class="block2-txt-child2 flex-r p-t-3">
+                                <!-- <div class="block2-txt-child2 flex-r p-t-3">
                                     <a href="<?= base_url() . "/tienda/producto/" . $arrProductos[$i]['idproducto'] . "/" . $ruta; ?>" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
                                         <img class="icon-heart1 dis-block trans-04" src="<?= media(); ?>/tienda/images/icons/icon-heart-01.png" alt="ICON">
                                         <img class="icon-heart2 dis-block trans-04 ab-t-l" src="<?= media(); ?>/tienda/images/icons/icon-heart-02.png" alt="ICON">
                                     </a>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>

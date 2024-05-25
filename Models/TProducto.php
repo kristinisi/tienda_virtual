@@ -26,7 +26,44 @@ trait TProducto
                         p.status 
                 FROM producto p 
                 INNER JOIN categoria c
-                ON p.categoriaid = c.idcategoria";
+                ON p.categoriaid = c.idcategoria ORDER BY p.idproducto DESC LIMIT " . CANTPORHOME;
+        $request = $this->con->select_all($sql);
+        if (count($request) > 0) { //si hay resultado de búsquedas recorremos el array de productos
+            for ($i = 0; $i < count($request); $i++) {
+                $intIdProducto = $request[$i]['idproducto'];
+                //sacamos las imágenes de cada producto
+                $sqlImg = "SELECT img
+                FROM imagen
+                WHERE productoid = $intIdProducto";
+                $arrImg = $this->con->select_all($sqlImg);
+                if (count($arrImg) > 0) {
+                    for ($j = 0; $j < count($arrImg); $j++) {
+                        //creamos un item para la ruta de la imagen
+                        $arrImg[$j]['url_image'] =  media() . "/images/uploads/" . $arrImg[$j]["img"];
+                    }
+                }
+                //colocamos el array de las imágenes a cada producto
+                $request[$i]['images'] = $arrImg;
+            }
+        }
+        return $request;
+    }
+
+    public function getProductosPage($desde, $porpagina)
+    {
+        $this->con = new Mysql(); //creamos el objeto mysql
+        $sql = "SELECT p.idproducto,
+                        p.nombre,
+                        p.descripcion,
+                        p.categoriaid,
+                        c.nombre as categoria,
+                        p.precio,
+                        p.stock,
+                        p.ruta,
+                        p.status 
+                FROM producto p 
+                INNER JOIN categoria c
+                ON p.categoriaid = c.idcategoria ORDER BY p.idproducto DESC LIMIT $desde, $porpagina";
         $request = $this->con->select_all($sql);
         if (count($request) > 0) { //si hay resultado de búsquedas recorremos el array de productos
             for ($i = 0; $i < count($request); $i++) {
@@ -235,5 +272,14 @@ trait TProducto
             $request['images'] = $arrImg;
         }
         return $request;
+    }
+
+    public function cantProductos()
+    {
+        $this->con = new Mysql();
+        $sql = "SELECT COUNT(*) as total_registro FROM producto WHERE status = 1";
+        $result_register = $this->con->select($sql);
+        $total_registro = $result_register;
+        return $total_registro;
     }
 }
