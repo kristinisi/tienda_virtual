@@ -11,7 +11,6 @@ class LoginModel extends Mysql
     {
         //cargamos el método constructor de la clase padre
         parent::__construct();
-        // session_destroy();
     }
 
     //Función que nos devuelve el resultado de la consulta login al controlador

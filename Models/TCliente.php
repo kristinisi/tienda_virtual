@@ -51,46 +51,4 @@ trait TCliente
         }
         return $return;
     }
-
-    // public function insertDetalleTemp(array $pedido){
-    // 	$this->intIdUsuario = $pedido['idcliente'];
-    // 	$this->intIdTransaccion = $pedido['idtransaccion'];
-    // 	$productos = $pedido['productos'];
-
-    // 	$this->con = new Mysql();
-    // 	$sql = "SELECT * FROM detalle_temp WHERE 
-    // 				transaccionid = '{$this->intIdTransaccion}' AND 
-    // 				personaid = $this->intIdUsuario";
-    // 	$request = $this->con->select_all($sql);
-
-    // 	if(empty($request)){
-    // 		foreach ($productos as $producto) {
-    // 			$query_insert  = "INSERT INTO detalle_temp(personaid,productoid,precio,cantidad,transaccionid) 
-    // 							  VALUES(?,?,?,?,?)";
-    //         	$arrData = array($this->intIdUsuario,
-    //         					$producto['idproducto'],
-    //     						$producto['precio'],
-    //     						$producto['cantidad'],
-    //     						$this->intIdTransaccion
-    //     					);
-    //         	$request_insert = $this->con->insert($query_insert,$arrData);
-    // 		}
-    // 	}else{
-    // 		$sqlDel = "DELETE FROM detalle_temp WHERE 
-    // 			transaccionid = '{$this->intIdTransaccion}' AND 
-    // 			personaid = $this->intIdUsuario";
-    // 		$request = $this->con->delete($sqlDel);
-    // 		foreach ($productos as $producto) {
-    // 			$query_insert  = "INSERT INTO detalle_temp(personaid,productoid,precio,cantidad,transaccionid) 
-    // 							  VALUES(?,?,?,?,?)";
-    //         	$arrData = array($this->intIdUsuario,
-    //         					$producto['idproducto'],
-    //     						$producto['precio'],
-    //     						$producto['cantidad'],
-    //     						$this->intIdTransaccion
-    //     					);
-    //         	$request_insert = $this->con->insert($query_insert,$arrData);
-    // 		}
-    // 	}
-    // }
 }

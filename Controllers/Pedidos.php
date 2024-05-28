@@ -62,9 +62,6 @@ class Pedidos extends Controllers
 
     public function orden(int $idpedido)
     {
-        // if (!is_numeric($idpedido)) {
-        //     header("Location:" . base_url() . '/pedidos');
-        // }
         if (empty($_SESSION['permisosMod']['r'])) {
             header("Location:" . base_url() . '/dashboard');
         }

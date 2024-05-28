@@ -34,17 +34,6 @@ $catFooter = getCatFooter();
                     Teléfono: <?= TELEMPRESA ?>
                     Email: <?= EMAIL_EMPRESA  ?>;
                 </p>
-
-                <!-- <div class="p-t-27">
-                    <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-                        <i class="fa fa-facebook"></i>
-                    </a>
-
-                    <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-                        <i class="fa fa-instagram"></i>
-                    </a>
-
-                </div> -->
             </div>
 
             <div class="col-sm-6 col-lg-4 p-b-50">
@@ -58,26 +47,6 @@ $catFooter = getCatFooter();
                     </a>
 
                 </div>
-                <!-- Map -->
-                <!-- <div class="map">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1550.713773137159!2d-3.9263003097974045!3d38.982737555892385!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd6bc33fe6bfa2fd%3A0xf5ba0f2365b0784a!2sPl.%20San%20Francisco%2C%201%2C%2013001%20Ciudad%20Real!5e0!3m2!1ses!2ses!4v1716635498395!5m2!1ses!2ses" width="400" height="300" style="border-radius:10px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div> -->
-                <!-- <h4 class="stext-301 cl0 p-b-30">
-                    Newsletter
-                </h4>
-
-                <form>
-                    <div class="wrap-input1 w-full p-b-4">
-                        <input class="input1 bg-none plh1 stext-107 cl7" type="text" name="email" placeholder="email@example.com">
-                        <div class="focus-input1 trans-04"></div>
-                    </div>
-
-                    <div class="p-t-18">
-                        <button class="flex-c-m stext-101 cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04">
-                            SUSCRÍBETE
-                        </button>
-                    </div>
-                </form> -->
             </div>
 
         </div>

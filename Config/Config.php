@@ -30,7 +30,7 @@ const SMONEY = "€";
 const CAT_SLIDER = "4,5,6";
 
 //constante para las categorias del banner
-const CAT_BANNER = "7,8,9";
+const CAT_BANNER = "4,5,6,7,8,9";
 
 //constante para las categorias del footer
 // const CAT_FOOTER = "1,2,3,4,5,6";
@@ -56,5 +56,5 @@ const RCLIENTE = 2;
 
 
 //Constante para mostrar el limite de productos a mostrar por página
-const CANTPORHOME = 2;
-const PROPORPAGINA = 2;
+const CANTPORHOME = 4;
+const PROPORPAGINA = 8;

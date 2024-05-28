@@ -1,6 +1,6 @@
 <?php
 headerTienda($data);
-$banner = media() . "/tienda/images/bg-01.jpg";
+$banner = media() . "/tienda/images/girasoles2.jpg";
 ?>
 <!-- Lo que hacemos con el siguiente script es que cuando carguemos esta vista se va a cambiar el estilo del header -->
 <script>
@@ -13,34 +13,35 @@ $banner = media() . "/tienda/images/bg-01.jpg";
     </h2>
 </section>
 
-<!-- Content page -->
+<!-- Contenido -->
 <section class="bg0 p-t-75 p-b-120">
     <div class="container">
         <div class="row p-b-148">
             <div class="col-md-7 col-lg-8">
                 <div class="p-t-7 p-r-85 p-r-15-lg p-r-0-md">
                     <h3 class="mtext-111 cl2 p-b-16">
-                        Our Story
+                        ¡Gracias por ser parte de nuestra historia!
                     </h3>
 
                     <p class="stext-113 cl6 p-b-26">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris consequat consequat enim, non auctor massa ultrices non. Morbi sed odio massa. Quisque at vehicula tellus, sed tincidunt augue. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas varius egestas diam, eu sodales metus scelerisque congue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Maecenas gravida justo eu arcu egestas convallis. Nullam eu erat bibendum, tempus ipsum eget, dictum enim. Donec non neque ut enim dapibus tincidunt vitae nec augue. Suspendisse potenti. Proin ut est diam. Donec condimentum euismod tortor, eget facilisis diam faucibus et. Morbi a tempor elit.
+                        Nuestra historia comenzó hace más de 20 años en el corazón de Ciudad Real, cuando Ana y Carlos, una pareja apasionada por la naturaleza y el arte floral, decidieron convertir su sueño en realidad. Inspirados por la belleza y la delicadeza de las flores, abrieron las puertas de Hanako, una floristería dedicada a traer un toque de color y alegría a la vida de nuestros clientes. </p>
+
+                    <p class="stext-113 cl6 p-b-26">
+                        Desde sus humildes comienzos, Hanako se ha destacado por su compromiso con la calidad y el servicio personalizado. Cada arreglo floral que creamos es una obra de arte única, diseñada con amor y dedicación. Nuestra misión es hacer que cada ocasión sea especial, ya sea una boda, un cumpleaños, un aniversario o simplemente un día cualquiera que merece ser celebrado con flores frescas y hermosas. </p>
+
+                    <p class="stext-113 cl6 p-b-26">
+                        En Hanako, creemos en la importancia de apoyar a los productores locales y en la sostenibilidad, por lo que seleccionamos cuidadosamente nuestras flores de los mejores cultivos de la región. Esta atención al detalle y nuestra pasión por lo que hacemos nos han convertido en una de las floristerías más queridas de Ciudad Real.
                     </p>
 
                     <p class="stext-113 cl6 p-b-26">
-                        Donec gravida lorem elit, quis condimentum ex semper sit amet. Fusce eget ligula magna. Aliquam aliquam imperdiet sodales. Ut fringilla turpis in vehicula vehicula. Pellentesque congue ac orci ut gravida. Aliquam erat volutpat. Donec iaculis lectus a arcu facilisis, eu sodales lectus sagittis. Etiam pellentesque, magna vel dictum rutrum, neque justo eleifend elit, vel tincidunt erat arcu ut sem. Sed rutrum, turpis ut commodo efficitur, quam velit convallis ipsum, et maximus enim ligula ac ligula.
-                    </p>
-
-                    <p class="stext-113 cl6 p-b-26">
-                        Any questions? Let us know in store at 8th floor, 379 Hudson St, New York, NY 10018 or call us on (+1) 96 716 6879
-                    </p>
+                        Te invitamos a visitarnos y descubrir la magia de Hanako. Estamos aquí para ayudarte a expresar tus sentimientos a través del lenguaje de las flores. </p>
                 </div>
             </div>
 
             <div class="col-11 col-md-5 col-lg-4 m-lr-auto">
                 <div class="how-bor1 ">
                     <div class="hov-img0">
-                        <img src="<?= media() ?>/tienda/images/about-01.jpg" alt="IMG">
+                        <img src="<?= media() ?>/tienda/images/about-01.png" alt="IMG">
                     </div>
                 </div>
             </div>
@@ -50,20 +51,18 @@ $banner = media() . "/tienda/images/bg-01.jpg";
             <div class="order-md-2 col-md-7 col-lg-8 p-b-30">
                 <div class="p-t-7 p-l-85 p-l-15-lg p-l-0-md">
                     <h3 class="mtext-111 cl2 p-b-16">
-                        Our Mission
+                        Te ayudamos en todo lo que necesites.
                     </h3>
 
                     <p class="stext-113 cl6 p-b-26">
-                        Mauris non lacinia magna. Sed nec lobortis dolor. Vestibulum rhoncus dignissim risus, sed consectetur erat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam maximus mauris sit amet odio convallis, in pharetra magna gravida. Praesent sed nunc fermentum mi molestie tempor. Morbi vitae viverra odio. Pellentesque ac velit egestas, luctus arcu non, laoreet mauris. Sed in ipsum tempor, consequat odio in, porttitor ante. Ut mauris ligula, volutpat in sodales in, porta non odio. Pellentesque tempor urna vitae mi vestibulum, nec venenatis nulla lobortis. Proin at gravida ante. Mauris auctor purus at lacus maximus euismod. Pellentesque vulputate massa ut nisl hendrerit, eget elementum libero iaculis.
-                    </p>
+                        Nuestro equipo de floristas profesionales está siempre dispuesto a asesorarte y ayudarte a elegir las flores perfectas para cada ocasión. Ofrecemos servicios de entrega a domicilio en Ciudad Real y alrededores, garantizando que tus flores lleguen frescas y a tiempo. </p>
 
                     <div class="bor16 p-l-29 p-b-9 m-t-22">
                         <p class="stext-114 cl6 p-r-40 p-b-11">
-                            Creativity is just connecting things. When you ask creative people how they did something, they feel a little guilty because they didn't really do it, they just saw something. It seemed obvious to them after a while.
-                        </p>
+                            "Donde florecen las flores, también lo hace la esperanza." </p>
 
                         <span class="stext-111 cl8">
-                            - Steve Job’s
+                            - Lady Bird Johnson
                         </span>
                     </div>
                 </div>
@@ -72,7 +71,7 @@ $banner = media() . "/tienda/images/bg-01.jpg";
             <div class="order-md-1 col-11 col-md-5 col-lg-4 m-lr-auto p-b-30">
                 <div class="how-bor2">
                     <div class="hov-img0">
-                        <img src="<?= media() ?>/tienda/images/about-02.jpg" alt="IMG">
+                        <img src="<?= media() ?>/tienda/images/about-02.png" alt="IMG">
                     </div>
                 </div>
             </div>

@@ -48,13 +48,13 @@
     <script>
         const base_url = "<?= base_url(); ?>";
     </script>
-    <!-- Essential javascripts for application to work-->
+    <!-- JavaScripts esenciales para que la aplicación funcione-->
     <script src="<?= media(); ?>/js/jquery-3.3.1.min.js"></script>
     <script src="<?= media(); ?>/js/popper.min.js"></script>
     <script src="<?= media(); ?>/js/fontawesome.js"></script>
     <script src="<?= media(); ?>/js/bootstrap.min.js"></script>
     <script src="<?= media(); ?>/js/main.js"></script>
-    <!-- The javascript plugin to display page loading on top-->
+    <!-- El plugin de JavaScript para mostrar la carga de la página en la parte superior-->
     <script src="<?= media(); ?>/js/plugins/pace.min.js"></script>
     <script type="text/javascript" src="<?= media(); ?>/js/plugins/sweetalert.min.js"></script>
     <script src="<?= media(); ?>/js/<?= $data['page_functions_js']; ?>"></script>

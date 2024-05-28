@@ -139,6 +139,7 @@ class Roles extends Controllers
 
     }
 
+    //función eliminar un rol
     public function delRol()
     {
         if ($_POST) {

@@ -222,6 +222,7 @@ function fntdelItem(element) {
   }
 }
 
+//función para el registro de un usuario cliente
 if (document.querySelector("#formRegister")) {
   let formRegister = document.querySelector("#formRegister");
   formRegister.onsubmit = function (e) {

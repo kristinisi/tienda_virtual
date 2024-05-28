@@ -59,7 +59,7 @@ if (isset($_SESSION['arrCarrito']) and count($_SESSION['arrCarrito']) > 0) {
 
     <!-- Header -->
     <header>
-        <!-- Header desktop -->
+        <!-- Header escritorio -->
         <div class="container-menu-desktop">
             <!-- Topbar -->
             <div class="top-bar">
@@ -95,12 +95,12 @@ if (isset($_SESSION['arrCarrito']) and count($_SESSION['arrCarrito']) > 0) {
             <div class="wrap-menu-desktop">
                 <nav class="limiter-menu-desktop container">
 
-                    <!-- Logo desktop -->
+                    <!-- Logo escritorio -->
                     <a href="<?= base_url(); ?>" class="logo">
                         <img src="<?= media() ?>/tienda/images/icons/logo.png" alt="hanako">
                     </a>
 
-                    <!-- Menu desktop -->
+                    <!-- Menu escritorio -->
                     <div class="menu-desktop">
                         <ul class="main-menu">
                             <li class="active-menu">
@@ -121,11 +121,8 @@ if (isset($_SESSION['arrCarrito']) and count($_SESSION['arrCarrito']) > 0) {
                         </ul>
                     </div>
 
-                    <!-- Icon header -->
+                    <!-- Icono header -->
                     <div class="wrap-icon-header flex-w flex-r-m">
-                        <!-- <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
-                            <i class="zmdi zmdi-search"></i>
-                        </div> -->
                         <!-- Dentro de la página del carrito no vamos a mostrar el icono asique hacemos una comprobación -->
                         <?php if ($data['page_name'] != "carrito") { ?>
 
@@ -138,14 +135,14 @@ if (isset($_SESSION['arrCarrito']) and count($_SESSION['arrCarrito']) > 0) {
             </div>
         </div>
 
-        <!-- Header Mobile -->
+        <!-- Header movil -->
         <div class="wrap-header-mobile">
             <!-- Logo moblie -->
             <div class="logo-mobile">
                 <a href="<?= base_url(); ?>"><img src="<?= media() ?>/tienda/images/icons/logo.png" alt="hanako"></a>
             </div>
 
-            <!-- Icon header -->
+            <!-- Icono header -->
             <div class="wrap-icon-header flex-w flex-r-m m-r-15">
                 <div class="cantCarrito icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search">
                     <i class="zmdi zmdi-search"></i>
@@ -160,7 +157,7 @@ if (isset($_SESSION['arrCarrito']) and count($_SESSION['arrCarrito']) > 0) {
                 <?php } ?>
             </div>
 
-            <!-- Button show menu -->
+            <!-- Botón ver menu -->
             <div class="btn-show-menu-mobile hamburger hamburger--squeeze">
                 <span class="hamburger-box">
                     <span class="hamburger-inner"></span>
@@ -169,7 +166,7 @@ if (isset($_SESSION['arrCarrito']) and count($_SESSION['arrCarrito']) > 0) {
         </div>
 
 
-        <!-- Menu Mobile -->
+        <!-- Menu movil -->
         <div class="menu-mobile">
             <ul class="topbar-mobile">
                 <li>
@@ -223,23 +220,6 @@ if (isset($_SESSION['arrCarrito']) and count($_SESSION['arrCarrito']) > 0) {
                 </li>
             </ul>
         </div>
-
-        <!-- Modal Search -->
-        <!-- <div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
-            <div class="container-search-header">
-                <button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
-                    <img src="<?= media() ?>/tienda/images/icons/icon-close2.png" alt="CLOSE">
-                </button>
-
-                <form class="wrap-search-header flex-w p-l-15" method="get" action="<?= base_url(); ?>/tienda/search">
-                    <button class="flex-c-m trans-04">
-                        <i class="zmdi zmdi-search"></i>
-                    </button>
-                    <input type="hidden" name="p" value="1">
-                    <input class="plh3" type="text" name="s" placeholder="Buscar...">
-                </form>
-            </div>
-        </div> -->
     </header>
 
     <!-- Carrito MODAL -->

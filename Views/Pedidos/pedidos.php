@@ -1,6 +1,5 @@
 <?php
 headerAdmin($data);
-// getModal('modalProductos', $data);
 ?>
 <main class="app-content">
     <div class="app-title">
