@@ -84,6 +84,7 @@ function openModal() {
   document.querySelector("#btnText").innerHTML = "Guardar"; //Cambiamos el span
   document.querySelector("#titleModal").innerHTML = "Nuevo Rol"; //Cambiamos el título
   document.querySelector("#formRol").reset(); //reseteamos el formulario
+  document.querySelector("#formRol").classList.remove("was-validated"); //para que se limpie la validación del formulario
 
   $("#modalFormRol").modal("show");
 }

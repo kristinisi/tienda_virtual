@@ -412,5 +412,7 @@ function openModal() {
   document.querySelector("#formProductos").reset();
   document.querySelector("#containerGallery").classList.add("notBlock"); //ocultams el elemento
   document.querySelector("#containerImages").innerHTML = ""; //vaciamos el elemento
+  document.querySelector("#formProductos").classList.remove("was-validated"); //para que se limpie la validación del formulario
+
   $("#modalFormProductos").modal("show");
 }

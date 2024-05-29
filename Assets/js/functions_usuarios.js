@@ -379,7 +379,7 @@ function openModal() {
   document.querySelector("#btnText").innerHTML = "Guardar"; //Cambiamos el span
   document.querySelector("#titleModal").innerHTML = "Nuevo Usuario"; //Cambiamos el título
   document.querySelector("#formUsuario").reset(); //reseteamos el formulario
-
+  document.querySelector("#formUsuario").classList.remove("was-validated"); //para que se limpie la validación del formulario
   $("#modalFormUsuario").modal("show");
 }
 

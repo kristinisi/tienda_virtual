@@ -294,6 +294,8 @@ function openModal() {
   document.querySelector("#btnText").innerHTML = "Guardar";
   document.querySelector("#titleModal").innerHTML = "Nueva Categoría";
   document.querySelector("#formCategoria").reset();
+  document.querySelector("#formCategoria").classList.remove("was-validated"); //para que se limpie la validación del formulario
+
   $("#modalFormCategorias").modal("show");
   removePhoto();
 }

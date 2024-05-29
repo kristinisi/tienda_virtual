@@ -57,7 +57,7 @@ $total = $subtotal + COSTOENVIO;
                                 </div>
                                 <div class="bg0 m-b-12">
                                     <label for="seguridad">Código de seguridad/CVV2: </label>
-                                    <input type="text" id="seguridad" class="form-control " pattern="[0-9]{3,4}" maxlength="3" minlength="3" required>
+                                    <input type="text" id="seguridad" class="form-control " pattern="[0-9]{3,4}" maxlength="4" minlength="3" required>
                                     <div class="invalid-feedback">El número de seguridad son 3 números</div>
                                 </div>
                                 <div class="bg0 m-b-12">
