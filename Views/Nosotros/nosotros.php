@@ -9,7 +9,7 @@ $banner = media() . "/tienda/images/girasoles2.jpg";
 <!-- Title page -->
 <section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('<?= $banner ?>');">
     <h2 class="ltext-105 cl0 txt-center">
-        About
+        Nosotros
     </h2>
 </section>
 

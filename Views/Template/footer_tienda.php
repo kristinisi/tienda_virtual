@@ -31,7 +31,7 @@ $catFooter = getCatFooter();
 
                 <p class="stext-107 cl7 size-201">
                     <?= DIRECCION ?> <br>
-                    Teléfono: <?= TELEMPRESA ?>
+                    Teléfono: <?= TELEMPRESA ?> <br>
                     Email: <?= EMAIL_EMPRESA  ?>;
                 </p>
             </div>

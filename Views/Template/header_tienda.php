@@ -144,10 +144,6 @@ if (isset($_SESSION['arrCarrito']) and count($_SESSION['arrCarrito']) > 0) {
 
             <!-- Icono header -->
             <div class="wrap-icon-header flex-w flex-r-m m-r-15">
-                <div class="cantCarrito icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search">
-                    <i class="zmdi zmdi-search"></i>
-                </div>
-
                 <!-- Dentro de la página del carrito no vamos a mostrar el icono asique hacemos una comprobación -->
                 <?php if ($data['page_name'] != "carrito") { ?>
 
@@ -213,10 +209,6 @@ if (isset($_SESSION['arrCarrito']) and count($_SESSION['arrCarrito']) > 0) {
 
                 <li>
                     <a href="<?= base_url(); ?>/nosotros">Nosotros</a>
-                </li>
-
-                <li>
-                    <a href="<?= base_url(); ?>/contacto">Contacto</a>
                 </li>
             </ul>
         </div>
