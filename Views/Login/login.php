@@ -28,7 +28,7 @@
                     <img src="<?= media(); ?>/images/loading.svg" alt="Loading">
                 </div>
             </div>
-            <form class="login-form" name="formLogin" id="formLogin" action="">
+            <form class="login-form" name="formLogin" id="formLogin">
                 <h3 class="login-head"><i class="fa-solid fa-user"></i> INICIAR SESIÓN</h3>
                 <div class="form-group">
                     <label class="control-label">USUARIO</label>

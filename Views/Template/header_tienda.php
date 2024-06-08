@@ -9,14 +9,14 @@ if (isset($_SESSION['arrCarrito']) and count($_SESSION['arrCarrito']) > 0) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <title><?= $data['page_tag'] ?></title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
-    <link rel="icon" type="image/png" href="<?= media() ?> /tienda/images/icons/logo_flor.png" />
+    <link rel="icon" type="image/png" href="<?= media() ?>/tienda/images/icons/logo_flor.png">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="<?= media() ?>/tienda/vendor/bootstrap/css/bootstrap.min.css">
     <!--===============================================================================================-->

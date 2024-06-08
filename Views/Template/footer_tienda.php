@@ -32,7 +32,7 @@ $catFooter = getCatFooter();
                 <p class="stext-107 cl7 size-201">
                     <?= DIRECCION ?> <br>
                     Teléfono: <?= TELEMPRESA ?> <br>
-                    Email: <?= EMAIL_EMPRESA  ?>;
+                    Email: <?= EMAIL_EMPRESA  ?>
                 </p>
             </div>
 
@@ -54,7 +54,7 @@ $catFooter = getCatFooter();
         <div class="row">
 
             <div class="map col-sm-12">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1550.713773137159!2d-3.9263003097974045!3d38.982737555892385!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd6bc33fe6bfa2fd%3A0xf5ba0f2365b0784a!2sPl.%20San%20Francisco%2C%201%2C%2013001%20Ciudad%20Real!5e0!3m2!1ses!2ses!4v1716635498395!5m2!1ses!2ses" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe class="map2" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1550.713773137159!2d-3.9263003097974045!3d38.982737555892385!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd6bc33fe6bfa2fd%3A0xf5ba0f2365b0784a!2sPl.%20San%20Francisco%2C%201%2C%2013001%20Ciudad%20Real!5e0!3m2!1ses!2ses!4v1716635498395!5m2!1ses!2ses" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
 
 
